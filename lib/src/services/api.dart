@@ -8,7 +8,6 @@ Future<Books> fetchBooks({String searchTerm}) async {
   final UriEncoded = Uri.encodeFull(
       "https://www.googleapis.com/books/v1/volumes?q=$searchTerm&key=$myKey&maxResults=40");
 
-  print(UriEncoded);
   final response = await http.get(UriEncoded);
   if (response.statusCode == 200) {
     print(response.body);
