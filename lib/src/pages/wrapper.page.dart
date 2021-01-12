@@ -34,7 +34,7 @@ class Wrapper extends StatelessWidget {
         ],
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white38,
-        // indicatorSize: TabBarIndicatorSize.label,
+        indicatorSize: TabBarIndicatorSize.label,
         // indicatorPadding: EdgeInsets.all(5.0),
         indicatorColor: Colors.white,
       ),

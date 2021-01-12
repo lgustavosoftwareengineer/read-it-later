@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:read_it_later/src/models/book.model.dart';
-import 'package:read_it_later/src/services/api.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,13 +6,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<Book> futureBook;
 
   @override
   void initState() {
-    super.initState();
-    futureBook = fetchBook();
-    print(futureBook);
+
   }
 
   @override

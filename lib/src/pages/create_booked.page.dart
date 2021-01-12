@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:read_it_later/src/models/book.model.dart';
 import 'package:read_it_later/src/services/api.dart';
@@ -10,18 +12,37 @@ class CreatedBookedPage extends StatefulWidget {
 
 class _CreatedBookedPageState extends State<CreatedBookedPage> {
   Future<Books> books;
-  String searchValue;
+  bool isSearching = false;
 
-  handleInput(String value) {
-    setState(() {
-      searchValue = value;
-      print(searchValue);
-    });
+  // handleInput(String value) {
+  //   setState(() {
+  //     isSearching = true;
+  //     searchValue = value;
+  //   });
+  // }
+
+  _onChangeHandler(value) {
+    Timer searchOnStoppedTyping;
+
+    const duration = Duration(
+        milliseconds:
+            800); // set the duration that you want call search() after that.
+    if (searchOnStoppedTyping != null) {
+      setState(() {
+        isSearching = false;
+        searchOnStoppedTyping.cancel();
+        print('nao estou buscando');
+      }); // clear timer
+    }
+    setState(() => searchOnStoppedTyping = new Timer(duration, () {
+          isSearching = true;
+          searchForABook(value);
+        }));
   }
 
-  searchForABook() {
+  searchForABook(value) {
     setState(() {
-      books = fetchBooks(searchTerm: searchValue);
+      books = fetchBooks(searchTerm: value);
     });
   }
 
@@ -38,12 +59,13 @@ class _CreatedBookedPageState extends State<CreatedBookedPage> {
           decoration: InputDecoration(
               hintText: 'Digite aqui o nome do livro...',
               hintStyle: TextStyle(color: Colors.blue)),
-          onChanged: handleInput,
+          onChanged: _onChangeHandler,
         ),
         actions: [
           IconButton(
-              icon: Icon(Icons.search, color: Colors.blue),
-              onPressed: () => {searchForABook()})
+            icon: Icon(Icons.search, color: Colors.blue),
+            onPressed: () => print('hello'),
+          )
         ],
         backgroundColor: Colors.white,
         elevation: 0,
@@ -63,14 +85,17 @@ class _CreatedBookedPageState extends State<CreatedBookedPage> {
                 itemBuilder: (BuildContext context, int index) {
                   return NRCard(
                     bookTitle: snapshot.data.items[index].title,
-                    bookAuthor: snapshot.data.items[index].title,
+                    bookAuthor: snapshot.data.items[index].authors,
                     imageLink: snapshot.data.items[index].image,
                   );
                 },
               );
             } else if (snapshot.hasError) {
-              print('${snapshot.error}');
-              return Center(child: Text("${snapshot.error}"));
+              return Center(
+                  child: Text('Tente buscar um livro na barra logo em cima'));
+            } else if (isSearching == false) {
+              return Center(
+                  child: Text('Tente buscar um livro na barra logo em cima'));
             }
 
             // By default, show a loading spinner.
