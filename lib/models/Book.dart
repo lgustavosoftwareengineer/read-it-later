@@ -18,7 +18,6 @@ class Book {
       this.publishedDate,
       this.selfLink});
 
-  // ignore: missing_return
   factory Book.fromJson(Map<String, dynamic> json) {
     try {
     return Book(
