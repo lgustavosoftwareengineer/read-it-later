@@ -55,20 +55,19 @@ class _CreatedBookedPageState extends State<CreatedBookedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(Icons.search, color: Colors.blue),
         title: TextField(
           decoration: InputDecoration(
               hintText: 'Digite aqui o nome do livro...',
-              hintStyle: TextStyle(color: Colors.blue)),
+              hintStyle: TextStyle(color: Colors.grey),
+              border: InputBorder.none,
+              ),
           onChanged: _onChangeHandler,
+
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search, color: Colors.blue),
-            onPressed: () => print('hello'),
-          )
-        ],
+
         backgroundColor: Colors.white,
-        elevation: 0,
+        //elevation: 0,
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,

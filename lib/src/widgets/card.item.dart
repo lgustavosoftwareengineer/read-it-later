@@ -34,7 +34,7 @@ class NRCard extends StatelessWidget {
           icon: Icon(Icons.keyboard_arrow_right),
           color: Colors.black,
           iconSize: 30.0,
-          onPressed: () => print('hello'),
+          onPressed: () => print('$bookTitle, $bookAuthor, $imageLink'),
         ));
 
     return Card(

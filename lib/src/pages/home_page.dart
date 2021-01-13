@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:read_it_later/src/widgets/app_bar.item.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,14 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Aqui está sua lista de próximas leituras:',
-          style: TextStyle(color: Colors.blue),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
+      appBar: CustomAppBar(text: 'Qual será a próxima leitura?'),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
