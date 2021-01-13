@@ -24,10 +24,5 @@ class BooksSavedController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // List<Book> showAll() {
-  //   notifyListeners();
-  //   return _items;
-  // }
-
   List<Book> showTrash() {}
 }
