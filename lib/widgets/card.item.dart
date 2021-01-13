@@ -36,8 +36,6 @@ class _NRCardState extends State<NRCard> {
     print(booksSavedController.showAll());
   }
 
-  handlerSetInController() {}
-
   @override
   Widget build(BuildContext context) {
     final NRListTile = widget.imageLink == ImageLinkDefault
@@ -52,7 +50,10 @@ class _NRCardState extends State<NRCard> {
                   decoration: new BoxDecoration(
                       border: new Border(
                           right: new BorderSide(
-                              width: 1.0, color: Colors.white24))),
+                              width: 1.0, color: Colors.white24
+                          )
+                      )
+                  ),
                   child: Image.network('${widget.imageLink}'),
                 ),
                 title: Text(
@@ -66,17 +67,21 @@ class _NRCardState extends State<NRCard> {
                   children: <Widget>[
                     Expanded(
                         child: Text(
-                      "${widget.bookAuthor}",
-                      style: TextStyle(color: Colors.black),
-                      overflow: TextOverflow.ellipsis,
-                    ))
+                          "${widget.bookAuthor}",
+                          style: TextStyle(color: Colors.black),
+                          overflow: TextOverflow.ellipsis,
+                        )
+                    )
                   ],
                 ),
                 trailing: IconButton(
                     icon: widget.icon,
                     color: Colors.blueAccent,
                     iconSize: 30.0,
-                    onPressed: widget.action == null ? handlerNRListTile : widget.action )));
+                    onPressed: widget.action == null ? handlerNRListTile : widget.action 
+                )
+            )
+        );
 
     return Card(
       elevation: 8.0,
