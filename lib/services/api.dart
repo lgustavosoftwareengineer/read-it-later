@@ -12,7 +12,7 @@ Future<Books> fetchBooks({String searchTerm}) async {
     print(response.body);
     return Books.fromJson(jsonDecode(response.body));
   } else {
-    throw Exception('Failed to load Books');
+      throw Exception('Failed to load Books');
   }
 }
 
@@ -26,6 +26,6 @@ Future<Book> fetchBook({String link}) async {
       final Book bookFromJson = Book.fromJson(jsonDecode(response.body));
       return bookFromJson;
     } else {
-      throw Exception('Failed to load Books');
+      throw Exception('Failed to load Book');
     }
 }

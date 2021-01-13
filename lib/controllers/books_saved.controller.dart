@@ -11,7 +11,6 @@ class BooksSavedController extends ChangeNotifier {
 
   void add(Book item) {
     _items.add(item);
-    // This call tells the widgets that are listening to this model to rebuild.
     notifyListeners();
   }
 
@@ -22,13 +21,13 @@ class BooksSavedController extends ChangeNotifier {
 
   void removeOneItem(int index) {
     _items.removeAt(index);
+    notifyListeners();
   }
 
-  List<Book> showAll() {
-    return _items;
-  }
+  // List<Book> showAll() {
+  //   notifyListeners();
+  //   return _items;
+  // }
 
   List<Book> showTrash() {}
 }
-
-final booksSavedController = BooksSavedController.instance;

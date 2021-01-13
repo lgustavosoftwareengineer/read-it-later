@@ -11,10 +11,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Book> books;
+  
   @override
   void initState() {
     setState(() {
-      books = booksSavedController.showAll();
+      books = BooksSavedController.instance.items;
     });
   }
 
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: CustomAppBar(text: 'Qual será a próxima leitura?'),
         body: AnimatedBuilder(
-          animation: booksSavedController,
+          animation: BooksSavedController.instance,
           builder: (context, child) {
             if (books.length < 1) {
               return Center(
@@ -46,10 +47,7 @@ class _HomePageState extends State<HomePage> {
                         selfLink: books[index].selfLink,
                         icon: Icon(Icons.check),
                         action: () {
-                          booksSavedController.removeOneItem(index);
-                          setState(() {
-                            books = booksSavedController.showAll();
-                          });
+                          BooksSavedController.instance.removeOneItem(index);
                         });
                   },
                 ));

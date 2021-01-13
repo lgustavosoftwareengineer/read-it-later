@@ -29,11 +29,9 @@ class _NRCardState extends State<NRCard> {
   Future<Book> book;
 
   handlerNRListTile() {
-    print(widget.selfLink);
     fetchBook(link: widget.selfLink)
-        .then((value) => booksSavedController.add(value));
+        .then((value) => BooksSavedController.instance.add(value));
 
-    print(booksSavedController.showAll());
   }
 
   @override
@@ -61,7 +59,6 @@ class _NRCardState extends State<NRCard> {
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-                // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
 
                 subtitle: Row(
                   children: <Widget>[
