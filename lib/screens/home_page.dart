@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:read_it_later/src/widgets/app_bar.item.dart';
+import 'package:read_it_later/widgets/app_bar.item.dart';
 
 class HomePage extends StatefulWidget {
   @override

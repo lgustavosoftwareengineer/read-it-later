@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:read_it_later/src/pages/wrapper.page.dart';
+import 'package:read_it_later/screens/wrapper.page.dart';
+
 
 void main() {
   runApp(MyApp());

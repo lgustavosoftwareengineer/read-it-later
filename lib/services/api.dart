@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:read_it_later/src/models/book.model.dart';
+import 'package:read_it_later/models/Book.dart';
 import '../config.dart';
 
 Future<Books> fetchBooks({String searchTerm}) async {

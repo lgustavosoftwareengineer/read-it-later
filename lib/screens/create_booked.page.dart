@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:read_it_later/src/models/book.model.dart';
-import 'package:read_it_later/src/services/api.dart';
-import 'package:read_it_later/src/widgets/card.item.dart';
+import 'package:read_it_later/models/Book.dart';
+import 'package:read_it_later/services/api.dart';
+import 'package:read_it_later/widgets/card.item.dart';
 
 class CreatedBookedPage extends StatefulWidget {
   @override

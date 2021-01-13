@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:read_it_later/src/pages/home_page.dart';
-import 'package:read_it_later/src/pages/trash.page.dart';
 
 import 'create_booked.page.dart';
+import 'home_page.dart';
+import 'trash.page.dart';
 
 class Wrapper extends StatelessWidget {
   @override
