@@ -10,8 +10,22 @@ Future<Books> fetchBooks({String searchTerm}) async {
   final response = await http.get(UriEncoded);
   if (response.statusCode == 200) {
     print(response.body);
-    return Books.createBooks(jsonDecode(response.body));
+    return Books.fromJson(jsonDecode(response.body));
   } else {
-    throw Exception('Failed to load Book');
+    throw Exception('Failed to load Books');
   }
+}
+
+Future<Book> fetchBook({String link}) async {
+  
+    final UriEncoded = Uri.encodeFull(link);
+
+    final response = await http.get(UriEncoded);
+
+    if (response.statusCode == 200) {
+      final Book bookFromJson = Book.fromJson(jsonDecode(response.body));
+      return bookFromJson;
+    } else {
+      throw Exception('Failed to load Books');
+    }
 }
