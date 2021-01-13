@@ -1,3 +1,5 @@
+import '../constants.dart';
+
 class Book {
   final String id;
   final String title;
@@ -8,21 +10,17 @@ class Book {
   final String selfLink;
 
   Book(
-      {this.authors = "",
-      this.id = "",
-      this.title = "",
-      this.image =
-          "https://png.pngtree.com/element_our/20190528/ourlarge/pngtree-blue-open-book-image_1134778.jpg",
-      this.description = "",
-      this.publishedDate = "",
-      this.selfLink = ""});
+      {this.authors,
+      this.id,
+      this.title,
+      this.image,
+      this.description,
+      this.publishedDate,
+      this.selfLink});
 
   // ignore: missing_return
   factory Book.fromJson(Map<String, dynamic> json) {
     try {
-      if (json['volumeInfo']['imageLinks']['smallThumbnail'] == null) {
-      print('É nulo');
-    }
     return Book(
       id: json['id'],
       selfLink: json['selfLink'],
@@ -38,7 +36,7 @@ class Book {
       selfLink: '',
       title: '\"Ser ou não ser eis a questão...\"',
       authors: 'William Shakespeare',
-      image: 'https://png.pngtree.com/element_our/20190528/ourlarge/pngtree-blue-open-book-image_1134778.jpg',
+      image: ImageLinkDefault,
       description: '',
       publishedDate: '',
     );
@@ -60,7 +58,7 @@ class Books {
     this.items,
   });
 
-  factory Books.createBooks(Map<String, dynamic> json) {
+  factory Books.fromJson(Map<String, dynamic> json) {
     return Books(
       responseCode: json['responseCode'],
       kind: json['kind'],
