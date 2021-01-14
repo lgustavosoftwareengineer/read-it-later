@@ -1,16 +1,17 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:read_it_later/constants.dart';
 import 'package:read_it_later/models/Book.dart';
 import 'package:read_it_later/services/api.dart';
 import 'package:read_it_later/widgets/card.item.dart';
 
-class CreatedBookedPage extends StatefulWidget {
+class SearchBookPage extends StatefulWidget {
   @override
-  _CreatedBookedPageState createState() => _CreatedBookedPageState();
+  _SearchBookPageState createState() => _SearchBookPageState();
 }
 
-class _CreatedBookedPageState extends State<CreatedBookedPage> {
+class _SearchBookPageState extends State<SearchBookPage> {
   Future<Books> books;
   bool isSearching = false;
 
@@ -80,10 +81,10 @@ class _CreatedBookedPageState extends State<CreatedBookedPage> {
             );
           } else if (snapshot.hasError) {
             return Center(
-                child: Text('Tente buscar um livro na barra logo em cima'));
+                child: Text(Texts['empty_search_book_page']));
           } else if (isSearching == false) {
             return Center(
-                child: Text('Tente buscar um livro na barra logo em cima'));
+                child: Text(Texts['empty_search_book_page']));
           }
 
           // By default, show a loading spinner.

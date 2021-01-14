@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:read_it_later/constants.dart';
 import 'package:read_it_later/controllers/books_saved.controller.dart';
 import 'package:read_it_later/models/Book.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
@@ -22,13 +23,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(text: 'Qual será a próxima leitura?'),
+        appBar: CustomAppBar(text: 'Aqui estão as suas próximas leituras: '),
         body: AnimatedBuilder(
           animation: BooksSavedController.instance,
           builder: (context, child) {
             if (books.length < 1) {
               return Center(
-                child: Text('Você ainda não tem nenhum livro marcado para ler depois'),
+                child: Text(Texts['empty_home_page']),
               );
             }
             return Container(
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                         selfLink: books[index].selfLink,
                         icon: Icon(Icons.check),
                         action: () {
-                          BooksSavedController.instance.removeOneItem(index);
+                          BooksSavedController.instance.sendToTrash(index);
                         });
                   },
                 ));

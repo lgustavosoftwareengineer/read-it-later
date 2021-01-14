@@ -9,7 +9,7 @@ Future<Books> fetchBooks({String searchTerm}) async {
 
   final response = await http.get(UriEncoded);
   if (response.statusCode == 200) {
-    print(response.body);
+    //print(response.body);
     return Books.fromJson(jsonDecode(response.body));
   } else {
       throw Exception('Failed to load Books');

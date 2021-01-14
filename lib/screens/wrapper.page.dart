@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'create_booked.page.dart';
+import 'search_book.page.dart';
 import 'home_page.dart';
 import 'trash.page.dart';
 
@@ -15,7 +15,7 @@ class Wrapper extends StatelessWidget {
         child: TabBarView(
           children: [
             HomePage(),
-            CreatedBookedPage(),
+            SearchBookPage(),
             TrashPage(),
           ],
         ),

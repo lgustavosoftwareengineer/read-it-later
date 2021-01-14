@@ -38,7 +38,7 @@ class _NRCardState extends State<NRCard> {
   Widget build(BuildContext context) {
     final NRListTile = widget.imageLink == ImageLinkDefault
         ? Container()
-        : FlatButton(
+        : TextButton(
             onPressed: () => print('Infos about the item'),
             child: ListTile(
                 contentPadding:
