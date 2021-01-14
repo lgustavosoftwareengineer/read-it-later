@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:read_it_later/models/Book.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class BooksSavedController extends ChangeNotifier {  
+class BooksSavedController extends ChangeNotifier {
   final List<Book> _items = [];
   final List<Book> _trash = [];
 
@@ -27,7 +27,6 @@ class BooksSavedController extends ChangeNotifier {
   void sendToTrash(int index) {
     var removedItem = _items.removeAt(index);
     _trash.add(removedItem);
-    print(_trash);
     notifyListeners();
   }
 

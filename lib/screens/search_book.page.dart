@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:read_it_later/constants.dart';
 import 'package:read_it_later/models/Book.dart';
 import 'package:read_it_later/services/api.dart';
+import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
+import 'package:read_it_later/widgets/text.item.dart';
 
 class SearchBookPage extends StatefulWidget {
   @override
@@ -75,12 +77,10 @@ class _SearchBookPageState extends State<SearchBookPage> {
                 );
               },
             );
-          } else if (snapshot.hasError) {
-            return Center(child: Text(Texts['empty_search_book_page']));
-          } else if (isSearching == false) {
-            return Center(child: Text(Texts['empty_search_book_page']));
+          } else if (snapshot.hasError || isSearching == false) {
+            return BodyItem(
+                centerText: TextItem(data: Texts['empty_search_book_page']));
           }
-
           // By default, show a loading spinner.
           return Center(child: CircularProgressIndicator());
         },

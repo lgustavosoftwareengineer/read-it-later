@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:read_it_later/constants.dart';
 import 'package:read_it_later/controllers/books_saved.controller.dart';
+import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/Book.dart';
 import 'package:read_it_later/services/api.dart';
 
@@ -12,15 +13,15 @@ class NRCard extends StatefulWidget {
   final Icon icon;
   final Function action;
 
-  const NRCard({
-    Key key,
-    this.bookTitle,
-    this.bookAuthor,
-    this.imageLink,
-    this.selfLink,
-    this.icon,
-    this.action
-  }) : super(key: key);
+  const NRCard(
+      {Key key,
+      this.bookTitle,
+      this.bookAuthor,
+      this.imageLink,
+      this.selfLink,
+      this.icon,
+      this.action})
+      : super(key: key);
   @override
   _NRCardState createState() => _NRCardState();
 }
@@ -31,15 +32,21 @@ class _NRCardState extends State<NRCard> {
   handlerNRListTile() {
     fetchBook(link: widget.selfLink)
         .then((value) => BooksSavedController.instance.add(value));
-
+    SnackBarHandler().showSnackbar(
+      context: context,
+      message:
+          '${widget.bookTitle} foi adicionado a sua lista de próximas leituras',
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    // Validation if occur some error in return the Book widget
     final NRListTile = widget.imageLink == ImageLinkDefault
         ? Container()
         : TextButton(
-            onPressed: () => print('Infos about the item'),
+            onPressed: () => {print('hello')},
+            onLongPress: () => print('opa'),
             child: ListTile(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -48,10 +55,7 @@ class _NRCardState extends State<NRCard> {
                   decoration: new BoxDecoration(
                       border: new Border(
                           right: new BorderSide(
-                              width: 1.0, color: Colors.white24
-                          )
-                      )
-                  ),
+                              width: 1.0, color: Colors.white24))),
                   child: Image.network('${widget.imageLink}'),
                 ),
                 title: Text(
@@ -59,26 +63,23 @@ class _NRCardState extends State<NRCard> {
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-
                 subtitle: Row(
                   children: <Widget>[
                     Expanded(
                         child: Text(
-                          "${widget.bookAuthor}",
-                          style: TextStyle(color: Colors.black),
-                          overflow: TextOverflow.ellipsis,
-                        )
-                    )
+                      "${widget.bookAuthor}",
+                      style: TextStyle(color: Colors.black),
+                      overflow: TextOverflow.ellipsis,
+                    ))
                   ],
                 ),
                 trailing: IconButton(
                     icon: widget.icon,
                     color: Colors.blueAccent,
                     iconSize: 30.0,
-                    onPressed: widget.action == null ? handlerNRListTile : widget.action 
-                )
-            )
-        );
+                    onPressed: widget.action == null
+                        ? handlerNRListTile
+                        : widget.action)));
 
     return Card(
       elevation: 8.0,

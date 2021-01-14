@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:read_it_later/constants.dart';
 import 'package:read_it_later/controllers/books_saved.controller.dart';
+import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/Book.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
+import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
+import 'package:read_it_later/widgets/text.item.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,7 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Book> books;
-  
+
   @override
   void initState() {
     setState(() {
@@ -23,14 +26,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(text: 'Aqui estão as suas próximas leituras: '),
+        appBar: CustomAppBar(text: 'Aqui estão as suas próximas leituras'),
         body: AnimatedBuilder(
           animation: BooksSavedController.instance,
           builder: (context, child) {
             if (books.length < 1) {
-              return Center(
-                child: Text(Texts['empty_home_page']),
-              );
+              return BodyItem(
+                  centerText: TextItem(data: Texts['empty_home_page']));
             }
             return Container(
                 width: MediaQuery.of(context).size.width,
@@ -41,6 +43,7 @@ class _HomePageState extends State<HomePage> {
                   shrinkWrap: true,
                   itemCount: books.length,
                   itemBuilder: (BuildContext context, int index) {
+                    print(index);
                     return NRCard(
                         bookTitle: books[index].title,
                         bookAuthor: books[index].authors,
@@ -49,6 +52,10 @@ class _HomePageState extends State<HomePage> {
                         icon: Icon(Icons.check),
                         action: () {
                           BooksSavedController.instance.sendToTrash(index);
+                          new SnackBarHandler().showSnackbar(
+                              context: context,
+                              message:
+                                  'Leitura do livro concluida com sucesso');
                         });
                   },
                 ));

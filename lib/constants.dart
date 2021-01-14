@@ -4,5 +4,5 @@ final ImageLinkDefault =
 final Map<String, String>Texts = {
   "empty_home_page":"Você ainda não tem nenhum livro marcado para ler depois",
   "empty_trash_page":"Sua lixeira está vazia...",
-  "empty_search_book_page": "Tente buscar um livro na barra logo em cima"
+  "empty_search_book_page": "Tente buscar um livro na barra logo em cima "
 };

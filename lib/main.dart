@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Read It Latter',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        accentColorBrightness: Brightness.light
       ),
       home: DefaultTabController(length: 3, child: Wrapper()),
 
