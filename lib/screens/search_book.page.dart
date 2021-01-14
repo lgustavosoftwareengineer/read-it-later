@@ -15,7 +15,7 @@ class _SearchBookPageState extends State<SearchBookPage> {
   Future<Books> books;
   bool isSearching = false;
 
-  _onChangeHandler(value) {
+  searchOnChangeHandler(value) {
     Timer searchOnStoppedTyping;
 
     const duration = Duration(
@@ -30,14 +30,10 @@ class _SearchBookPageState extends State<SearchBookPage> {
     }
     setState(() => searchOnStoppedTyping = new Timer(duration, () {
           isSearching = true;
-          searchForABook(value);
+          setState(() {
+            books = fetchBooks(searchTerm: value);
+          });
         }));
-  }
-
-  searchForABook(value) {
-    setState(() {
-      books = fetchBooks(searchTerm: value);
-    });
   }
 
   @override
@@ -50,7 +46,7 @@ class _SearchBookPageState extends State<SearchBookPage> {
           hintStyle: TextStyle(color: Colors.grey),
           border: InputBorder.none,
         ),
-        onChanged: _onChangeHandler,
+        onChanged: searchOnChangeHandler,
       ),
 
       backgroundColor: Colors.white,
@@ -80,11 +76,9 @@ class _SearchBookPageState extends State<SearchBookPage> {
               },
             );
           } else if (snapshot.hasError) {
-            return Center(
-                child: Text(Texts['empty_search_book_page']));
+            return Center(child: Text(Texts['empty_search_book_page']));
           } else if (isSearching == false) {
-            return Center(
-                child: Text(Texts['empty_search_book_page']));
+            return Center(child: Text(Texts['empty_search_book_page']));
           }
 
           // By default, show a loading spinner.
