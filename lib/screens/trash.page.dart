@@ -27,7 +27,7 @@ class _TrashPageState extends State<TrashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(text: 'Aqui está a Lixeira'),
+        appBar: CustomAppBar(text: 'Leituras concluídas'),
         body: AnimatedBuilder(
           animation: BooksSavedController.instance,
           builder: (context, child) {
