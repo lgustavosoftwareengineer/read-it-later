@@ -75,7 +75,7 @@ class _NRCardState extends State<NRCard> {
                 ),
                 trailing: widget.activeIcon == true
                     ? IconButton(
-                        icon: Icon(Icons.add),
+                        icon: Icon(Icons.bookmark_sharp),
                         color: Colors.blueAccent,
                         iconSize: 30.0,
                         onPressed: handlerNRListTile)

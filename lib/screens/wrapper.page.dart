@@ -23,13 +23,13 @@ class Wrapper extends StatelessWidget {
       bottomNavigationBar: new TabBar(
         tabs: [
           Tab(
-            icon: new Icon(Icons.home),
+            icon: new Icon(Icons.menu_book_sharp),
           ),
           Tab(
-            icon: new Icon(Icons.add),
+            icon: new Icon(Icons.search_sharp),
           ),
           Tab(
-            icon: new Icon(Icons.delete),
+            icon: new Icon(Icons.check),
           ),
         ],
         labelColor: Colors.white,
