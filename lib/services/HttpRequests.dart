@@ -3,7 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:read_it_later/models/Book.dart';
 import '../config.dart';
 
-Future<Books> fetchBooks({String searchTerm}) async {
+class HttpRequests {
+
+  Future<Books> fetchBooks({String searchTerm}) async {
   final UriEncoded = Uri.encodeFull(
       "https://www.googleapis.com/books/v1/volumes?q=$searchTerm&key=$myKey&maxResults=40");
 
@@ -29,3 +31,8 @@ Future<Book> fetchBook({String link}) async {
       throw Exception('Failed to load Book');
     }
 }
+
+
+}
+
+

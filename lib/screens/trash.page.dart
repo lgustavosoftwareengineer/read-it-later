@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:read_it_later/constants.dart';
+import 'package:read_it_later/Strings.dart';
 import 'package:read_it_later/controllers/books_saved.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/Book.dart';
@@ -33,7 +33,7 @@ class _TrashPageState extends State<TrashPage> {
           builder: (context, child) {
             if (books.length < 1) {
               return BodyItem(
-                  centerText: TextItem(data: Texts['empty_trash_page']));
+                  centerText: TextItem(data: Strings.empty_trash_page));
             }
             return Container(
                 width: MediaQuery.of(context).size.width,
@@ -46,12 +46,16 @@ class _TrashPageState extends State<TrashPage> {
                   itemBuilder: (BuildContext context, int index) {
                     return Dismissible(
                       key: Key(index.toString()),
-                      
-                      background: HiddenContainerItem(color: Colors.greenAccent, context: context,
-                          icon: Icon(Icons.refresh), iconTwo: Icon(Icons.delete)),
-                      secondaryBackground: HiddenContainerItem(color: Colors.redAccent, context: context,
-                          icon: Icon(Icons.refresh), iconTwo: Icon(Icons.delete)),
-                      
+                      background: HiddenContainerItem(
+                          color: Colors.greenAccent,
+                          context: context,
+                          icon: Icon(Icons.refresh),
+                          iconTwo: Icon(Icons.delete)),
+                      secondaryBackground: HiddenContainerItem(
+                          color: Colors.redAccent,
+                          context: context,
+                          icon: Icon(Icons.refresh),
+                          iconTwo: Icon(Icons.delete)),
                       onDismissed: (direction) {
                         if (direction == DismissDirection.endToStart) {
                           BooksSavedController.instance

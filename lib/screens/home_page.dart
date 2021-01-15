@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:read_it_later/constants.dart';
+import 'package:read_it_later/Strings.dart';
 import 'package:read_it_later/controllers/books_saved.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/Book.dart';
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           builder: (context, child) {
             if (books.length < 1) {
               return BodyItem(
-                  centerText: TextItem(data: Texts['empty_home_page']));
+                  centerText: TextItem(data: Strings.empty_home_page));
             }
             return Container(
                 width: MediaQuery.of(context).size.width,

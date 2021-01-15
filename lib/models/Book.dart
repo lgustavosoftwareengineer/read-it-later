@@ -1,4 +1,4 @@
-import '../constants.dart';
+import 'package:read_it_later/Strings.dart';
 
 class Book {
   final String id;
@@ -35,7 +35,7 @@ class Book {
       selfLink: '',
       title: '\"Ser ou não ser eis a questão...\"',
       authors: 'William Shakespeare',
-      image: ImageLinkDefault,
+      image: Strings.ImageLinkDefault,
       description: '',
       publishedDate: '',
     );

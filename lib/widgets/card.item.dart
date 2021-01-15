@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:read_it_later/constants.dart';
+import 'package:read_it_later/Strings.dart';
 import 'package:read_it_later/controllers/books_saved.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/Book.dart';
-import 'package:read_it_later/services/api.dart';
+import 'package:read_it_later/services/HttpRequests.dart';
 
 class NRCard extends StatefulWidget {
   final String bookTitle;
@@ -30,7 +30,7 @@ class _NRCardState extends State<NRCard> {
   Future<Book> book;
 
   handlerNRListTile() {
-    fetchBook(link: widget.selfLink)
+    HttpRequests().fetchBook(link: widget.selfLink)
         .then((value) => BooksSavedController.instance.add(value));
     SnackBarHandler().showSnackbar(
       context: context,
@@ -42,7 +42,7 @@ class _NRCardState extends State<NRCard> {
   @override
   Widget build(BuildContext context) {
     // Validation if occur some error in return the Book widget
-    final NRListTile = widget.imageLink == ImageLinkDefault
+    final NRListTile = widget.imageLink == Strings.ImageLinkDefault
         ? Container()
         : TextButton(
             onPressed: () => {print('hello')},
