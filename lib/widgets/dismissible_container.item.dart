@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class HiddenContainerItem extends StatefulWidget {
+class DismissibleContainerItem extends StatefulWidget {
   final Icon icon;
   final Color color;
   final Alignment direction;
 
-  const HiddenContainerItem({
+  const DismissibleContainerItem({
     Key key,
     this.icon,
     this.color, this.direction,
   }) : super(key: key);
 
   @override
-  _HiddenContainerItemState createState() => _HiddenContainerItemState();
+  _DismissibleContainerItemState createState() => _DismissibleContainerItemState();
 }
 
-class _HiddenContainerItemState extends State<HiddenContainerItem> {
+class _DismissibleContainerItemState extends State<DismissibleContainerItem> {
   @override
   Widget build(BuildContext context) {
     return Container(

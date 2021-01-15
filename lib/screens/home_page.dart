@@ -6,7 +6,7 @@ import 'package:read_it_later/models/Book.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
-import 'package:read_it_later/widgets/hidden_container.item.dart';
+import 'package:read_it_later/widgets/dismissible_container.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
 
 class HomePage extends StatefulWidget {
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                     return Dismissible(
                       key: Key(index.toString()),
                       direction: DismissDirection.startToEnd,
-                      background: HiddenContainerItem(color: Colors.blueAccent,
+                      background: DismissibleContainerItem(color: Colors.blueAccent,
                           icon: Icon(Icons.check), direction: Alignment.centerLeft),
                       onDismissed: (direction) {
                         BooksSavedController.instance.sendToTrash(index);

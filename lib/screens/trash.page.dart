@@ -6,7 +6,7 @@ import 'package:read_it_later/models/Book.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
-import 'package:read_it_later/widgets/hidden_container.item.dart';
+import 'package:read_it_later/widgets/dismissible_container.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
 
 class TrashPage extends StatefulWidget {
@@ -46,12 +46,12 @@ class _TrashPageState extends State<TrashPage> {
                   itemBuilder: (BuildContext context, int index) {
                     return Dismissible(
                       key: Key(index.toString()),
-                      background: HiddenContainerItem(
+                      background: DismissibleContainerItem(
                           color: Colors.greenAccent,
                           icon: Icon(Icons.refresh),
                           direction: Alignment.centerLeft,
                           ),
-                      secondaryBackground: HiddenContainerItem(
+                      secondaryBackground: DismissibleContainerItem(
                           color: Colors.redAccent,
                           icon: Icon(Icons.delete),
                           direction: Alignment.centerRight,
