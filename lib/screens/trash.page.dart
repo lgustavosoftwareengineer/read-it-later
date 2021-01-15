@@ -48,14 +48,14 @@ class _TrashPageState extends State<TrashPage> {
                       key: Key(index.toString()),
                       background: HiddenContainerItem(
                           color: Colors.greenAccent,
-                          context: context,
                           icon: Icon(Icons.refresh),
-                          iconTwo: Icon(Icons.delete)),
+                          direction: Alignment.centerLeft,
+                          ),
                       secondaryBackground: HiddenContainerItem(
                           color: Colors.redAccent,
-                          context: context,
-                          icon: Icon(Icons.refresh),
-                          iconTwo: Icon(Icons.delete)),
+                          icon: Icon(Icons.delete),
+                          direction: Alignment.centerRight,
+                          ),
                       onDismissed: (direction) {
                         if (direction == DismissDirection.endToStart) {
                           BooksSavedController.instance

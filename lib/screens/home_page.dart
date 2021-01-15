@@ -47,8 +47,9 @@ class _HomePageState extends State<HomePage> {
                     print(index);
                     return Dismissible(
                       key: Key(index.toString()),
-                      background: HiddenContainerItem(color: Colors.blueAccent, context: context,
-                          icon: Icon(Icons.check), iconTwo: Icon(Icons.check)),
+                      direction: DismissDirection.startToEnd,
+                      background: HiddenContainerItem(color: Colors.blueAccent,
+                          icon: Icon(Icons.check), direction: Alignment.centerLeft),
                       onDismissed: (direction) {
                         BooksSavedController.instance.sendToTrash(index);
                         new SnackBarHandler().showSnackbar(

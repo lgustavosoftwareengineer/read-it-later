@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 
 class HiddenContainerItem extends StatefulWidget {
-  final Function changeTheColor;
-  final BuildContext context;
   final Icon icon;
-  final Icon iconTwo;
   final Color color;
+  final Alignment direction;
 
-  const HiddenContainerItem(
-      {Key key,
-      this.context,
-      this.icon,
-      this.iconTwo,
-      this.changeTheColor, this.color,
-      })
-      : super(key: key);
+  const HiddenContainerItem({
+    Key key,
+    this.icon,
+    this.color, this.direction,
+  }) : super(key: key);
 
   @override
   _HiddenContainerItemState createState() => _HiddenContainerItemState();
@@ -23,30 +18,23 @@ class HiddenContainerItem extends StatefulWidget {
 class _HiddenContainerItemState extends State<HiddenContainerItem> {
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       color: widget.color,
+      padding: EdgeInsets.symmetric(horizontal: 50),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: widget.direction == Alignment.centerLeft ? MainAxisAlignment.start : MainAxisAlignment.end,
         children: <Widget>[
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: widget.direction,
             child: IconButton(
               icon: widget.icon,
               color: Colors.white,
               onPressed: () => {},
             ),
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: IconButton(
-              icon: widget.iconTwo,
-              color: Colors.white,
-              onPressed: () => {},
-            ),
-          )
+          
         ],
       ),
     );
