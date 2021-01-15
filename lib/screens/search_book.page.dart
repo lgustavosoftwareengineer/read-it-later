@@ -74,6 +74,7 @@ class _SearchBookPageState extends State<SearchBookPage> {
                   imageLink: snapshot.data.items[index].image,
                   selfLink: snapshot.data.items[index].selfLink,
                   icon: Icon(Icons.add),
+                  activeIcon: true,
                 );
               },
             );

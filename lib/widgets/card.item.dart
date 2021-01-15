@@ -11,7 +11,7 @@ class NRCard extends StatefulWidget {
   final String imageLink;
   final String selfLink;
   final Icon icon;
-  final Function action;
+  final bool activeIcon;
 
   const NRCard(
       {Key key,
@@ -20,7 +20,7 @@ class NRCard extends StatefulWidget {
       this.imageLink,
       this.selfLink,
       this.icon,
-      this.action})
+      this.activeIcon})
       : super(key: key);
   @override
   _NRCardState createState() => _NRCardState();
@@ -73,13 +73,13 @@ class _NRCardState extends State<NRCard> {
                     ))
                   ],
                 ),
-                trailing: IconButton(
-                    icon: widget.icon,
-                    color: Colors.blueAccent,
-                    iconSize: 30.0,
-                    onPressed: widget.action == null
-                        ? handlerNRListTile
-                        : widget.action)));
+                trailing: widget.activeIcon == true
+                    ? IconButton(
+                        icon: Icon(Icons.add),
+                        color: Colors.blueAccent,
+                        iconSize: 30.0,
+                        onPressed: handlerNRListTile)
+                    : Container(width: 30, height: 30)));
 
     return Card(
       elevation: 8.0,

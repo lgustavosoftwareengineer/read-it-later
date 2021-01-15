@@ -6,6 +6,7 @@ import 'package:read_it_later/models/Book.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
+import 'package:read_it_later/widgets/hidden_container.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,19 +45,25 @@ class _HomePageState extends State<HomePage> {
                   itemCount: books.length,
                   itemBuilder: (BuildContext context, int index) {
                     print(index);
-                    return NRCard(
+                    return Dismissible(
+                      key: Key(index.toString()),
+                      background: HiddenContainerItem(color: Colors.blueAccent, context: context,
+                          icon: Icon(Icons.check), iconTwo: Icon(Icons.check)),
+                      onDismissed: (direction) {
+                        BooksSavedController.instance.sendToTrash(index);
+                        new SnackBarHandler().showSnackbar(
+                            context: context,
+                            message: 'Leitura do livro concluida com sucesso');
+                      },
+                      child: NRCard(
                         bookTitle: books[index].title,
                         bookAuthor: books[index].authors,
                         imageLink: books[index].image,
                         selfLink: books[index].selfLink,
                         icon: Icon(Icons.check),
-                        action: () {
-                          BooksSavedController.instance.sendToTrash(index);
-                          new SnackBarHandler().showSnackbar(
-                              context: context,
-                              message:
-                                  'Leitura do livro concluida com sucesso');
-                        });
+                        activeIcon: false,
+                      ),
+                    );
                   },
                 ));
           },

@@ -6,6 +6,7 @@ import 'package:read_it_later/models/Book.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
+import 'package:read_it_later/widgets/hidden_container.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
 
 class TrashPage extends StatefulWidget {
@@ -45,30 +46,37 @@ class _TrashPageState extends State<TrashPage> {
                   itemBuilder: (BuildContext context, int index) {
                     return Dismissible(
                       key: Key(index.toString()),
-                      background: Container(color: Colors.red),
-                      //direction: DismissDirection.vertical,
+                      
+                      background: HiddenContainerItem(color: Colors.greenAccent, context: context,
+                          icon: Icon(Icons.refresh), iconTwo: Icon(Icons.delete)),
+                      secondaryBackground: HiddenContainerItem(color: Colors.redAccent, context: context,
+                          icon: Icon(Icons.refresh), iconTwo: Icon(Icons.delete)),
+                      
                       onDismissed: (direction) {
-                                                        
-                        BooksSavedController.instance.removePermanentily(index);
-                        new SnackBarHandler().showSnackbar(
-                            context: context,
-                            message: 'Livro removido permanentemente');
+                        if (direction == DismissDirection.endToStart) {
+                          BooksSavedController.instance
+                              .removePermanentily(index);
+                          new SnackBarHandler().showSnackbar(
+                              context: context,
+                              message: 'Livro removido permanentemente');
+                        } else {
+                          BooksSavedController.instance.add(books[index]);
+                          BooksSavedController.instance
+                              .removePermanentily(index);
+                          new SnackBarHandler().showSnackbar(
+                              context: context,
+                              message:
+                                  'Livro voltou para a sua lista de próximas leituras');
+                        }
                       },
                       child: NRCard(
-                          bookTitle: books[index].title,
-                          bookAuthor: books[index].authors,
-                          imageLink: books[index].image,
-                          selfLink: books[index].selfLink,
-                          icon: Icon(Icons.refresh_sharp),
-                          action: () {
-                            BooksSavedController.instance.add(books[index]);
-                            BooksSavedController.instance
-                                .removePermanentily(index);
-                            new SnackBarHandler().showSnackbar(
-                                context: context,
-                                message:
-                                    'Livro voltou para a sua lista de próximas leituras');
-                          }),
+                        bookTitle: books[index].title,
+                        bookAuthor: books[index].authors,
+                        imageLink: books[index].image,
+                        selfLink: books[index].selfLink,
+                        icon: Icon(Icons.refresh_sharp),
+                        activeIcon: false,
+                      ),
                     );
                   },
                 ));
