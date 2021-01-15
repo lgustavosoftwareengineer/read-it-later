@@ -6,7 +6,8 @@ class SnackBarHandler {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
             Text(message),
-        duration: Duration(seconds: 1),
+        duration: Duration(seconds: 2
+        ),
         ));
   }  
 }
