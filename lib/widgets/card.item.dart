@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:read_it_later/Strings.dart';
-import 'package:read_it_later/controllers/books_saved.controller.dart';
+import 'package:read_it_later/controllers/books.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/BookFromHttpRequest.dart';
 import 'package:read_it_later/models/BookFromSQLite.dart';
+import 'package:read_it_later/screens/book_details.page.dart';
 import 'package:read_it_later/services/DBProvider.dart';
 import 'package:read_it_later/services/HttpRequests.dart';
 
@@ -12,6 +13,8 @@ class NRCard extends StatefulWidget {
   final String bookAuthor;
   final String imageLink;
   final String selfLink;
+  final String bookDescription;
+  final String bookPublishedDate;
   final Icon icon;
   final bool activeIcon;
 
@@ -22,25 +25,21 @@ class NRCard extends StatefulWidget {
       this.imageLink,
       this.selfLink,
       this.icon,
-      this.activeIcon})
+      this.activeIcon,
+      this.bookDescription,
+      this.bookPublishedDate})
       : super(key: key);
   @override
   _NRCardState createState() => _NRCardState();
 }
 
 class _NRCardState extends State<NRCard> {
-  Future<BookFromHttpRequest> book;
+  final booksController = BooksController.instance;
 
   handlerNRListTile() {
-    HttpRequests().fetchBook(link: widget.selfLink).then((value) =>
-        DBProvider.db.newBook(new BookSQLite(
-            title: value.title,
-            authors: value.authors,
-            bookId: value.id,
-            description: value.description,
-            image: value.image,
-            publishedDate: value.publishedDate,
-            selfLink: value.selfLink)));
+    HttpRequests().fetchBook(link: widget.selfLink).then((value) {
+      return booksController.add(item: value);
+    });
     SnackBarHandler().showSnackbar(
       context: context,
       message:
@@ -54,7 +53,20 @@ class _NRCardState extends State<NRCard> {
     final NRListTile = widget.bookTitle == '[error]'
         ? Container()
         : TextButton(
-            onPressed: () => {print('hello')},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => BookDetailsPage(
+                          title: widget.bookTitle,
+                          authors: widget.bookAuthor,
+                          description: widget.bookDescription,
+                          image: widget.imageLink,
+                          publishedDate: widget.bookPublishedDate,
+                          selfLink: widget.selfLink,
+                        )),
+              );
+            },
             onLongPress: () => print('opa'),
             child: ListTile(
                 contentPadding:
