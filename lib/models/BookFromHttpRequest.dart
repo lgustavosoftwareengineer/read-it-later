@@ -1,6 +1,5 @@
-import 'package:read_it_later/Strings.dart';
 
-class Book {
+class BookFromHttpRequest {
   final String id;
   final String title;
   final String authors;
@@ -9,7 +8,7 @@ class Book {
   final String publishedDate;
   final String selfLink;
 
-  Book(
+  BookFromHttpRequest(
       {this.authors,
       this.id,
       this.title,
@@ -18,9 +17,9 @@ class Book {
       this.publishedDate,
       this.selfLink});
 
-  factory Book.fromJson(Map<String, dynamic> json) {
+  factory BookFromHttpRequest.fromJson(Map<String, dynamic> json) {
     try {
-    return Book(
+    return BookFromHttpRequest(
       id: json['id'],
       selfLink: json['selfLink'],
       title: json['volumeInfo']['title'],
@@ -30,12 +29,12 @@ class Book {
       publishedDate: json['volumeInfo']['publishedDate'],
     );
     } catch (err) {
-      return Book(
+      return BookFromHttpRequest(
       id: '',
       selfLink: '',
-      title: '\"Ser ou não ser eis a questão...\"',
-      authors: 'William Shakespeare',
-      image: Strings.ImageLinkDefault,
+      title: '[error]',
+      authors: '',
+      image: '',
       description: '',
       publishedDate: '',
     );
@@ -44,26 +43,26 @@ class Book {
   }
 }
 
-class Books {
+class BooksFromHttpRequest {
   String responseCode;
   String kind;
   int totalItems;
-  List<Book> items;
+  List<BookFromHttpRequest> items;
 
-  Books({
+  BooksFromHttpRequest({
     this.responseCode = "",
     this.kind = "",
     this.totalItems = 0,
     this.items,
   });
 
-  factory Books.fromJson(Map<String, dynamic> json) {
-    return Books(
+  factory BooksFromHttpRequest.fromJson(Map<String, dynamic> json) {
+    return BooksFromHttpRequest(
       responseCode: json['responseCode'],
       kind: json['kind'],
       totalItems: json['totalItems'],
       items: (json['items'] as List)
-          .map((e) => Book.fromJson(e as Map<String, dynamic>))
+          .map((e) => BookFromHttpRequest.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }

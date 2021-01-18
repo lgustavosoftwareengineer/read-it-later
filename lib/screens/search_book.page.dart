@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:read_it_later/Strings.dart';
-import 'package:read_it_later/models/Book.dart';
+import 'package:read_it_later/models/BookFromHttpRequest.dart';
 import 'package:read_it_later/services/HttpRequests.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
@@ -14,7 +14,7 @@ class SearchBookPage extends StatefulWidget {
 }
 
 class _SearchBookPageState extends State<SearchBookPage> {
-  Future<Books> books;
+  Future<BooksFromHttpRequest> books;
   bool isSearching = false;
 
   searchOnChangeHandler(value) {
@@ -59,7 +59,7 @@ class _SearchBookPageState extends State<SearchBookPage> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       color: Colors.white,
-      child: FutureBuilder<Books>(
+      child: FutureBuilder<BooksFromHttpRequest>(
         future: books,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -80,7 +80,7 @@ class _SearchBookPageState extends State<SearchBookPage> {
             );
           } else if (snapshot.hasError || isSearching == false) {
             return BodyItem(
-                centerText: TextItem(data: Strings.empty_search_book_page));
+                centerText: TextItem(data: Strings.emptySearchBookPage));
           }
           // By default, show a loading spinner.
           return Center(child: CircularProgressIndicator());

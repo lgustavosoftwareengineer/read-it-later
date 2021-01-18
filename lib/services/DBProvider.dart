@@ -48,6 +48,7 @@ class DBProvider {
     });
   }
 
+// #region [CREATE] METHODS
   Future<int> newBook(BookSQLite book) async {
     final db = await database;
     var res = await db.insert("Books", book.toMap());
@@ -60,8 +61,10 @@ class DBProvider {
     var res = await db.insert("Trash", book.toMap());
     return res;
   }
+// #endregion
 
-  // GET METHODS
+
+// #region [GET] METHODS
   Future<BookSQLite> getBook(int id) async {
     final db = await database;
     var res = await db.query("Books", where: "id = ?", whereArgs: [id]);
@@ -83,7 +86,9 @@ class DBProvider {
         res.isNotEmpty ? res.map((c) => BookSQLite.fromMap(c)).toList() : [];
     return list;
   }
+// #endregion
 
+// #region [DELETE] METHODS
   Future<int> deleteAllBooks() async {
     final db = await database;
     return db.rawDelete("Delete * from Books");
@@ -101,3 +106,4 @@ class DBProvider {
     return db.delete("Trash", where: "id = ?", whereArgs: [id]);
   }
 }
+// #endregion

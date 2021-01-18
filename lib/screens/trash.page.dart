@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:read_it_later/Strings.dart';
 import 'package:read_it_later/controllers/books_saved.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
-import 'package:read_it_later/models/Book.dart';
+import 'package:read_it_later/models/BookFromHttpRequest.dart';
 import 'package:read_it_later/models/BookFromSQLite.dart';
+import 'package:read_it_later/services/DBProvider.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
 import 'package:read_it_later/widgets/dismissible_container.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
-
-import '../Database.dart';
 
 class TrashPage extends StatefulWidget {
   @override
@@ -18,13 +17,14 @@ class TrashPage extends StatefulWidget {
 }
 
 class _TrashPageState extends State<TrashPage> {
-  List<Book> books;
+  List<BookFromHttpRequest> books;
 
   @override
   void initState() {
     setState(() {
       books = BooksSavedController.instance.trash;
     });
+    super.initState();
   }
 
   @override
@@ -37,7 +37,8 @@ class _TrashPageState extends State<TrashPage> {
               (BuildContext context, AsyncSnapshot<List<BookSQLite>> snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data.length == 0) {
-                return BodyItem(centerText: TextItem(data: Strings.empty_trash_page));
+                return BodyItem(
+                    centerText: TextItem(data: Strings.emptyTrashPage));
               }
 
               return Container(

@@ -1,19 +1,19 @@
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
-import 'package:read_it_later/models/Book.dart';
+import 'package:read_it_later/models/BookFromHttpRequest.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BooksSavedController extends ChangeNotifier {
-  final List<Book> _items = [];
-  final List<Book> _trash = [];
+  final List<BookFromHttpRequest> _items = [];
+  final List<BookFromHttpRequest> _trash = [];
 
-  UnmodifiableListView<Book> get items => UnmodifiableListView(_items);
-  UnmodifiableListView<Book> get trash => UnmodifiableListView(_trash);
+  UnmodifiableListView<BookFromHttpRequest> get items => UnmodifiableListView(_items);
+  UnmodifiableListView<BookFromHttpRequest> get trash => UnmodifiableListView(_trash);
 
   static BooksSavedController instance = BooksSavedController();
 
-  void add(Book item) async {
+  void add(BookFromHttpRequest item) async {
     final prefs = await SharedPreferences.getInstance();
     _items.add(item);
     notifyListeners();

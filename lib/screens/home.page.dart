@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:read_it_later/Strings.dart';
 import 'package:read_it_later/controllers/books_saved.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
-import 'package:read_it_later/models/Book.dart';
+import 'package:read_it_later/models/BookFromHttpRequest.dart';
 import 'package:read_it_later/models/BookFromSQLite.dart';
+import 'package:read_it_later/services/DBProvider.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
 import 'package:read_it_later/widgets/dismissible_container.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
-
-import '../Database.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Book> books;
+  List<BookFromHttpRequest> books;
 
   @override
   void initState() {
@@ -38,9 +37,9 @@ class _HomePageState extends State<HomePage> {
             if (snapshot.hasData) {
               if (snapshot.data.length == 0) {
                 return BodyItem(
-                    centerText: TextItem(data: Strings.empty_home_page));
+                    centerText: TextItem(data: Strings.emptyHomePage));
               }
-              
+
               return Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
@@ -76,6 +75,8 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                   ));
+            } else if (snapshot.hasError) {
+              return BodyItem(centerText: TextItem(data: Strings.error));
             } else {
               return Center(child: CircularProgressIndicator());
             }
