@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:read_it_later/Strings.dart';
-import 'package:read_it_later/controllers/books_saved.controller.dart';
+import 'package:read_it_later/controllers/books.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/BookFromHttpRequest.dart';
 import 'package:read_it_later/models/BookFromSQLite.dart';
@@ -17,12 +17,12 @@ class TrashPage extends StatefulWidget {
 }
 
 class _TrashPageState extends State<TrashPage> {
-  List<BookFromHttpRequest> books;
+  Future<List<BookSQLite>> books;
 
   @override
   void initState() {
     setState(() {
-      books = BooksSavedController.instance.trash;
+      books = BooksController.instance.trash;
     });
     super.initState();
   }
@@ -32,7 +32,7 @@ class _TrashPageState extends State<TrashPage> {
     return Scaffold(
         appBar: CustomAppBar(text: 'Leituras concluídas'),
         body: FutureBuilder<List<BookSQLite>>(
-          future: DBProvider.db.getAllBooksFromTrash(),
+          future: books,
           builder:
               (BuildContext context, AsyncSnapshot<List<BookSQLite>> snapshot) {
             if (snapshot.hasData) {
@@ -51,7 +51,6 @@ class _TrashPageState extends State<TrashPage> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       BookSQLite item = snapshot.data[index];
-
                       return Dismissible(
                         key: Key(index.toString()),
                         background: DismissibleContainerItem(
@@ -66,17 +65,27 @@ class _TrashPageState extends State<TrashPage> {
                         ),
                         onDismissed: (direction) {
                           if (direction == DismissDirection.endToStart) {
-                            DBProvider.db.removePermanentilyTheBook(item.id);
-                            new SnackBarHandler().showSnackbar(
-                                context: context,
-                                message: 'Livro removido permanentemente');
-                          } else {
-                            DBProvider.db.newBook(item);
-                            DBProvider.db.removePermanentilyTheBook(item.id);
+                            BooksController.instance
+                                .removePermanentily(item.id);
                             new SnackBarHandler().showSnackbar(
                                 context: context,
                                 message:
-                                    'Livro voltou para a sua lista de próximas leituras');
+                                    '${item.title} foi removido permanentemente');
+                          } else {
+                            var bookControler = BooksController.instance;
+                            bookControler.add(
+                                item: BookFromHttpRequest(
+                                    title: item.title,
+                                    image: item.image,
+                                    authors: item.authors,
+                                    description: item.description,
+                                    publishedDate: item.publishedDate,
+                                    selfLink: item.selfLink));
+                            bookControler.removePermanentily(item.id);
+                            new SnackBarHandler().showSnackbar(
+                                context: context,
+                                message:
+                                    '${item.title} voltou para a sua lista de próximas leituras');
                           }
                         },
                         child: NRCard(
@@ -84,6 +93,8 @@ class _TrashPageState extends State<TrashPage> {
                           bookAuthor: item.authors,
                           imageLink: item.image,
                           selfLink: item.selfLink,
+                          bookDescription: item.description,
+                          bookPublishedDate: item.publishedDate,
                           icon: Icon(Icons.check),
                           activeIcon: false,
                         ),

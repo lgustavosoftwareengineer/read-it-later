@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:read_it_later/Strings.dart';
-import 'package:read_it_later/controllers/books_saved.controller.dart';
+import 'package:read_it_later/controllers/books.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
-import 'package:read_it_later/models/BookFromHttpRequest.dart';
 import 'package:read_it_later/models/BookFromSQLite.dart';
-import 'package:read_it_later/services/DBProvider.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
@@ -17,13 +15,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<BookFromHttpRequest> books;
+  Future<List<BookSQLite>> books;
 
   @override
   void initState() {
     setState(() {
-      books = BooksSavedController.instance.items;
+      books = BooksController.instance.items;
     });
+  }
+
+  handlerOnDismissed(BookSQLite item) async {
+    await BooksController.instance.sendToTrash(item.id);
+    new SnackBarHandler().showSnackbar(
+        context: context,
+        message: 'Leitura do livro ${item.title} concluida com sucesso');
   }
 
   @override
@@ -31,7 +36,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: CustomAppBar(text: 'Aqui estão as suas próximas leituras'),
         body: FutureBuilder<List<BookSQLite>>(
-          future: DBProvider.db.getAllBooks(),
+          future: books,
           builder:
               (BuildContext context, AsyncSnapshot<List<BookSQLite>> snapshot) {
             if (snapshot.hasData) {
@@ -57,12 +62,8 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.blueAccent,
                             icon: Icon(Icons.check),
                             direction: Alignment.centerLeft),
-                        onDismissed: (direction) async {
-                          await DBProvider.db.sendBookFromTrash(item.id);
-                          new SnackBarHandler().showSnackbar(
-                              context: context,
-                              message:
-                                  'Leitura do livro concluida com sucesso');
+                        onDismissed: (direction) {
+                          handlerOnDismissed(item);
                         },
                         child: NRCard(
                           bookTitle: item.title,
@@ -70,6 +71,8 @@ class _HomePageState extends State<HomePage> {
                           imageLink: item.image,
                           selfLink: item.selfLink,
                           icon: Icon(Icons.check),
+                          bookDescription: item.description,
+                          bookPublishedDate: item.publishedDate,
                           activeIcon: false,
                         ),
                       );
