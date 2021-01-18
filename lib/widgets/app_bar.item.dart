@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String text;
-  CustomAppBar({Key key, this.text})
+  final Widget leading;
+  CustomAppBar({Key key, this.text, this.leading})
       : preferredSize = Size.fromHeight(kToolbarHeight),
         super(key: key);
 
@@ -17,6 +18,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading: widget.leading,
       title: Text(
         '${widget.text}',
         style: TextStyle(color: Colors.blueGrey),

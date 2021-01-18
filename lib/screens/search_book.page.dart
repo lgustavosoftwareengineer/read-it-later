@@ -73,6 +73,8 @@ class _SearchBookPageState extends State<SearchBookPage> {
                   bookAuthor: snapshot.data.items[index].authors,
                   imageLink: snapshot.data.items[index].image,
                   selfLink: snapshot.data.items[index].selfLink,
+                  bookDescription: snapshot.data.items[index].description,
+                  bookPublishedDate: snapshot.data.items[index].publishedDate,
                   icon: Icon(Icons.add),
                   activeIcon: true,
                 );
