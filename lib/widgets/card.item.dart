@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:read_it_later/Database.dart';
 import 'package:read_it_later/Strings.dart';
 import 'package:read_it_later/controllers/books_saved.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/Book.dart';
+import 'package:read_it_later/models/BookFromSQLite.dart';
 import 'package:read_it_later/services/HttpRequests.dart';
 
 class NRCard extends StatefulWidget {
@@ -30,8 +32,15 @@ class _NRCardState extends State<NRCard> {
   Future<Book> book;
 
   handlerNRListTile() {
-    HttpRequests().fetchBook(link: widget.selfLink)
-        .then((value) => BooksSavedController.instance.add(value));
+    HttpRequests().fetchBook(link: widget.selfLink).then((value) =>
+        DBProvider.db.newBook(new BookSQLite(
+            title: value.title,
+            authors: value.authors,
+            bookId: value.id,
+            description: value.description,
+            image: value.image,
+            publishedDate: value.publishedDate,
+            selfLink: value.selfLink)));
     SnackBarHandler().showSnackbar(
       context: context,
       message:

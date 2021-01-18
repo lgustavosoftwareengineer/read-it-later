@@ -3,11 +3,14 @@ import 'package:read_it_later/Strings.dart';
 import 'package:read_it_later/controllers/books_saved.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/Book.dart';
+import 'package:read_it_later/models/BookFromSQLite.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
 import 'package:read_it_later/widgets/dismissible_container.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
+
+import '../Database.dart';
 
 class TrashPage extends StatefulWidget {
   @override
@@ -28,62 +31,67 @@ class _TrashPageState extends State<TrashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar(text: 'Leituras concluídas'),
-        body: AnimatedBuilder(
-          animation: BooksSavedController.instance,
-          builder: (context, child) {
-            if (books.length < 1) {
-              return BodyItem(
-                  centerText: TextItem(data: Strings.empty_trash_page));
-            }
-            return Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                color: Colors.white,
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: books.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Dismissible(
-                      key: Key(index.toString()),
-                      background: DismissibleContainerItem(
+        body: FutureBuilder<List<BookSQLite>>(
+          future: DBProvider.db.getAllBooksFromTrash(),
+          builder:
+              (BuildContext context, AsyncSnapshot<List<BookSQLite>> snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data.length == 0) {
+                return BodyItem(centerText: TextItem(data: Strings.empty_trash_page));
+              }
+
+              return Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  color: Colors.white,
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      BookSQLite item = snapshot.data[index];
+
+                      return Dismissible(
+                        key: Key(index.toString()),
+                        background: DismissibleContainerItem(
                           color: Colors.greenAccent,
                           icon: Icon(Icons.refresh),
                           direction: Alignment.centerLeft,
-                          ),
-                      secondaryBackground: DismissibleContainerItem(
+                        ),
+                        secondaryBackground: DismissibleContainerItem(
                           color: Colors.redAccent,
                           icon: Icon(Icons.delete),
                           direction: Alignment.centerRight,
-                          ),
-                      onDismissed: (direction) {
-                        if (direction == DismissDirection.endToStart) {
-                          BooksSavedController.instance
-                              .removePermanentily(index);
-                          new SnackBarHandler().showSnackbar(
-                              context: context,
-                              message: 'Livro removido permanentemente');
-                        } else {
-                          BooksSavedController.instance.add(books[index]);
-                          BooksSavedController.instance
-                              .removePermanentily(index);
-                          new SnackBarHandler().showSnackbar(
-                              context: context,
-                              message:
-                                  'Livro voltou para a sua lista de próximas leituras');
-                        }
-                      },
-                      child: NRCard(
-                        bookTitle: books[index].title,
-                        bookAuthor: books[index].authors,
-                        imageLink: books[index].image,
-                        selfLink: books[index].selfLink,
-                        icon: Icon(Icons.refresh_sharp),
-                        activeIcon: false,
-                      ),
-                    );
-                  },
-                ));
+                        ),
+                        onDismissed: (direction) {
+                          if (direction == DismissDirection.endToStart) {
+                            DBProvider.db.removePermanentilyTheBook(item.id);
+                            new SnackBarHandler().showSnackbar(
+                                context: context,
+                                message: 'Livro removido permanentemente');
+                          } else {
+                            DBProvider.db.newBook(item);
+                            DBProvider.db.removePermanentilyTheBook(item.id);
+                            new SnackBarHandler().showSnackbar(
+                                context: context,
+                                message:
+                                    'Livro voltou para a sua lista de próximas leituras');
+                          }
+                        },
+                        child: NRCard(
+                          bookTitle: item.title,
+                          bookAuthor: item.authors,
+                          imageLink: item.image,
+                          selfLink: item.selfLink,
+                          icon: Icon(Icons.check),
+                          activeIcon: false,
+                        ),
+                      );
+                    },
+                  ));
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
           },
         ));
   }
