@@ -32,24 +32,24 @@ class BookSQLite {
   });
 
   factory BookSQLite.fromMap(Map<String, dynamic> json) => new BookSQLite(
-        id: json["id"],
-        bookId: json["bookId"],
-        title: json["title"],
-        authors: json["authors"],
-        image: json["image"],
-        description: json["description"],
-        publishedDate: json["publishedDate"],
-        selfLink: json["selfLink"],
+        id: json['id'],
+        bookId: json['bookId'],
+        title: json['title'],
+        authors: json['authors'],
+        image: json['image'],
+        description: json['description'],
+        publishedDate: json['publishedDate'],
+        selfLink: json['selfLink'],
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "bookId": bookId,
-        "title": title,
-        "authors": authors,
-        "image": image,
-        "description": description,
-        "publishedDate": publishedDate,
-        "selfLink": selfLink,
+        'id': id,
+        'bookId': bookId,
+        'title': title,
+        'authors': authors,
+        'image': image,
+        'description': description,
+        'publishedDate': publishedDate,
+        'selfLink': selfLink,
       };
 }

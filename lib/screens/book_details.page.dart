@@ -32,21 +32,21 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
              children: [
                Padding(
                  padding: const EdgeInsets.all(8.0),
-                 child: Image.network('${widget.image}', scale: 0.4,),
+                 child: Image.network(widget.image, scale: 0.4,),
                ),
                Padding(
                  padding: const EdgeInsets.symmetric(vertical: 5),
                  child: Text('Autor:', style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),),
                ),
                Divider(),
-               Text('${widget.authors}', style: TextStyle(fontSize: 20)),
+               Text(widget.authors, style: TextStyle(fontSize: 20)),
                Divider(),
                Padding(
                  padding: const EdgeInsets.symmetric(vertical: 5),
                  child: Text('Data de publicação:', style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),),
                ),
                Divider(),
-               Text('${widget.publishedDate}', style: TextStyle(fontSize: 20)),
+               Text(widget.publishedDate, style: TextStyle(fontSize: 20)),
                Divider(),
                Padding(
                  padding: const EdgeInsets.symmetric(vertical: 5),
@@ -54,8 +54,8 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                ),
                Divider(),
                Padding(
-                 padding: const EdgeInsets.only(bottom: 10),
-                 child: Text('${widget.description}', style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+                 padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                 child: Text(widget.description, style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
                ),
              ],
            ),
