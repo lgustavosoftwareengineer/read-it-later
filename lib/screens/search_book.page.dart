@@ -27,7 +27,6 @@ class _SearchBookPageState extends State<SearchBookPage> {
       setState(() {
         isSearching = false;
         searchOnStoppedTyping.cancel();
-        print('nao estou buscando');
       }); // clear timer
     }
     setState(() => searchOnStoppedTyping = new Timer(duration, () {
