@@ -10,12 +10,12 @@ import 'package:read_it_later/widgets/card.item.dart';
 import 'package:read_it_later/widgets/dismissible_container.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
 
-class TrashPage extends StatefulWidget {
+class LibraryPage extends StatefulWidget {
   @override
-  _TrashPageState createState() => _TrashPageState();
+  _LibraryPageState createState() => _LibraryPageState();
 }
 
-class _TrashPageState extends State<TrashPage> {
+class _LibraryPageState extends State<LibraryPage> {
   Future<List<BookSQLite>> books = BooksRepository.instance.trash;
 
   _handlerFloatButton(){
@@ -33,7 +33,7 @@ class _TrashPageState extends State<TrashPage> {
           (BuildContext context, AsyncSnapshot<List<BookSQLite>> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data.length == 0) {
-            return BodyItem(centerText: TextItem(data: Strings.emptyTrashPage));
+            return BodyItem(centerText: TextItem(data: Strings.emptyLibraryPage));
           }
 
           return Container(

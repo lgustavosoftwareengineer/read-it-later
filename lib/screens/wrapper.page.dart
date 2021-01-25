@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:read_it_later/screens/library.page.dart';
 
 import 'home.page.dart';
-import 'search_book.page.dart';
-import 'trash.page.dart';
-
 class Wrapper extends StatefulWidget {
   @override
   _WrapperState createState() => _WrapperState();
@@ -22,7 +20,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
           controller: _controller,
           children: [
             HomePage(),
-            TrashPage(),
+            LibraryPage(),
           ],
         ),
       ),
