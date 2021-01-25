@@ -55,12 +55,14 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.symmetric(vertical: 20),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20,),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Image.network(
                         widget.image,
                       ),
@@ -74,23 +76,23 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                           child: Text(
                             'Autor',
                             style: TextStyle(
-                                fontSize: 23, fontWeight: FontWeight.bold),
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Divider(),
-                        Text(widget.authors, style: TextStyle(fontSize: 20)),
+                        Text(widget.authors, style: TextStyle(fontSize: 18)),
                         Divider(),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 5),
                           child: Text(
                             'Data de publicação',
                             style: TextStyle(
-                                fontSize: 23, fontWeight: FontWeight.bold),
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Divider(),
                         Text(widget.publishedDate,
-                            style: TextStyle(fontSize: 20)),
+                            style: TextStyle(fontSize: 18)),
                       ],
                     ),
                     ),
