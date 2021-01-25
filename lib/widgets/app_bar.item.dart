@@ -21,9 +21,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
       leading: widget.leading,
       title: Text(
         '${widget.text}',
-        style: TextStyle(color: Theme.of(context).accentColor),
+        style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.bold),
       ),
       backgroundColor: Colors.white,
+      
       elevation: 0,
     );
   }

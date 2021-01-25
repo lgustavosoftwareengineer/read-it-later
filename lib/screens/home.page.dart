@@ -85,8 +85,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: CustomAppBar(
           text: 'O que vamos ler?',
-          leading:
-              Icon(Icons.bookmark_outline, color: Theme.of(context).accentColor)),
+          ),
       body: _body,
       floatingActionButton: FloatingActionButton.extended(
           //onPressed: _handlerFloatButton,
