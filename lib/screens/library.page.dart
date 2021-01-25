@@ -101,7 +101,7 @@ class _LibraryPageState extends State<LibraryPage> {
       },
     );
     return Scaffold(
-      appBar: CustomAppBar(text: 'Leituras concluídas'),
+      appBar: CustomAppBar(text: 'Leituras concluídas', leading: Icon(Icons.check, color: Theme.of(context).accentColor,),),
       body: _body,
       floatingActionButton: FloatingActionButton.extended(
           onPressed: _handlerFloatButton,

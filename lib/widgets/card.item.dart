@@ -79,14 +79,14 @@ class _NRCardState extends State<NRCard> {
                 title: Text(
                   "${widget.bookTitle}",
                   style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                      color: Theme.of(context).accentColor, fontWeight: FontWeight.bold),
                 ),
                 subtitle: Row(
                   children: <Widget>[
                     Expanded(
                         child: Text(
                       "${widget.bookAuthor}",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.blueGrey),
                       overflow: TextOverflow.ellipsis,
                     ))
                   ],
@@ -94,7 +94,7 @@ class _NRCardState extends State<NRCard> {
                 trailing: widget.activeIcon == true
                     ? IconButton(
                         icon: Icon(Icons.bookmark_outline_sharp),
-                        color: Colors.blueAccent,
+                        color: Theme.of(context).accentColor,
                         iconSize: 30.0,
                         onPressed: handlerNRListTile)
                     : Container(width: 30, height: 30)));

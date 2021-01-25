@@ -70,54 +70,57 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                     Padding(
                       padding: const EdgeInsets.all(5),
                       child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: Text(
-                            'Autor',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: Text(
+                              'Autor',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).accentColor),
+                            ),
                           ),
-                        ),
-                        Divider(),
-                        Text(widget.authors, style: TextStyle(fontSize: 18)),
-                        Divider(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: Text(
-                            'Data de publicação',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                          Divider(),
+                          Text(widget.authors, style: TextStyle(fontSize: 18, color: Colors.blueGrey)),
+                          Divider(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: Text(
+                              'Data de publicação',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).accentColor),
+                            ),
                           ),
-                        ),
-                        Divider(),
-                        Text(widget.publishedDate,
-                            style: TextStyle(fontSize: 18)),
-                      ],
+                          Divider(),
+                          Text(widget.publishedDate,
+                              style: TextStyle(fontSize: 18, color: Colors.blueGrey)),
+                        ],
+                      ),
                     ),
-                    ),
-                    
                   ],
                 ),
               ),
-              Divider(),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: Text('Descrição',
-                    style:
-                        TextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
-              ),
-              Divider(),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                child: Text(
-                  _parseHtmlString(widget.description) == null
-                      ? 'Livro sem descrição'
-                      : _parseHtmlString(widget.description),
-                  style: TextStyle(fontSize: 20),
-                  textAlign: TextAlign.center,
+              Column(
+                children: [
+                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Text('Descrição',
+                        style: TextStyle(
+                            fontSize: 23, fontWeight: FontWeight.bold, color: Theme.of(context).accentColor)),
+                  ),
+                  Divider(),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                    child: Text(
+                      _parseHtmlString(widget.description),
+                      style: TextStyle(fontSize: 20, color: Colors.blueGrey),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+
                 ),
-              ),
             ],
           ),
         ),

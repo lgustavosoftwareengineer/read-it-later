@@ -2,13 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:read_it_later/Strings.dart';
+import 'package:read_it_later/handlers/search_delgates.handler.dart';
 import 'package:read_it_later/models/BookFromHttpRequest.dart';
 import 'package:read_it_later/services/HttpRequests.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
+import 'package:read_it_later/widgets/custom_search_delgates.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SearchBookPage extends StatefulWidget {
+  final String searchTerm;
+  const SearchBookPage({Key key, this.searchTerm}) : super(key: key);
   @override
   _SearchBookPageState createState() => _SearchBookPageState();
 }
@@ -17,24 +22,11 @@ class _SearchBookPageState extends State<SearchBookPage> {
   Future<BooksFromHttpRequest> books;
   bool isSearching = false;
 
-  searchOnChangeHandler(value) {
-    Timer searchOnStoppedTyping;
-
-    const duration = Duration(
-        milliseconds:
-            800); // set the duration that you want call search() after that.
-    if (searchOnStoppedTyping != null) {
-      setState(() {
-        isSearching = false;
-        searchOnStoppedTyping.cancel();
-      }); // clear timer
-    }
-    setState(() => searchOnStoppedTyping = new Timer(duration, () {
-          isSearching = true;
-          setState(() {
-            books = HttpRequests().fetchBooks(searchTerm: value);
-          });
-        }));
+  void initState() {
+    setState(() {
+      books = HttpRequests().fetchBooks(searchTerm: widget.searchTerm);
+    });
+    super.initState();
   }
 
   @override
@@ -45,16 +37,28 @@ class _SearchBookPageState extends State<SearchBookPage> {
               onPressed: () => Navigator.pop(context),
               icon: Icon(Icons.arrow_back, color: Colors.white))
           : Icon(Icons.search, color: Colors.white),
-      title: TextField(
-        style: TextStyle(color: Colors.white),
-        cursorColor: Colors.white,
-        decoration: InputDecoration(
-          hintText: 'Digite aqui o nome do livro...',
-          hintStyle: TextStyle(color: Colors.white),
-          
-          border: InputBorder.none,
+      title: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(20))),
+        height: MediaQuery.of(context).size.height / 20,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1.9),
+          child: TextField(
+            style: TextStyle(color: Colors.blueGrey),
+            cursorColor: Colors.blueGrey,
+            decoration: InputDecoration(
+              hintText: '${widget.searchTerm}',
+              hintStyle: TextStyle(color: Colors.blueGrey),
+              border: InputBorder.none,
+            ),
+            readOnly: true,
+            onTap: () => SearchDelgateHandler().handlerShowSearch(context),
+          ),
         ),
-        onChanged: searchOnChangeHandler,
       ),
 
       backgroundColor: Theme.of(context).accentColor,
@@ -87,8 +91,7 @@ class _SearchBookPageState extends State<SearchBookPage> {
               },
             );
           } else if (snapshot.hasError || isSearching == false) {
-            return BodyItem(
-                centerText: TextItem(data: Strings.emptySearchBookPage));
+            return Center(child: CircularProgressIndicator());
           }
           // By default, show a loading spinner.
           return Center(child: CircularProgressIndicator());

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:read_it_later/Strings.dart';
+import 'package:read_it_later/handlers/search_delgates.handler.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/BookFromSQLite.dart';
 import 'package:read_it_later/repositories/books.repository.dart';
@@ -7,8 +8,10 @@ import 'package:read_it_later/screens/search_book.page.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
+import 'package:read_it_later/widgets/custom_search_delgates.item.dart';
 import 'package:read_it_later/widgets/dismissible_container.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -80,10 +83,14 @@ class _HomePageState extends State<HomePage> {
       },
     );
     return Scaffold(
-      appBar: CustomAppBar(text: 'O que vamos ler?'),
+      appBar: CustomAppBar(
+          text: 'O que vamos ler?',
+          leading:
+              Icon(Icons.bookmark_outline, color: Theme.of(context).accentColor)),
       body: _body,
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: _handlerFloatButton,
+          //onPressed: _handlerFloatButton,
+          onPressed: () => SearchDelgateHandler().handlerShowSearch(context),
           label: Text('Adicionar'),
           icon: Icon(Icons.add)),
     );

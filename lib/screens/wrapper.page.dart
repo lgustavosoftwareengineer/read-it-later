@@ -28,7 +28,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
         controller: _controller,
         tabs: [
           Tab(
-            icon: new Icon(Icons.menu_book_sharp),
+            icon: new Icon(Icons.bookmark_outline),
           ),
           
           Tab(
