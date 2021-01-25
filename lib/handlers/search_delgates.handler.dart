@@ -9,6 +9,7 @@ class SearchDelgateHandler {
       context: context,
       delegate: SearchWithSuggestionDelegate(
         onSearchChanged: handlerGetRecentSearchesLike,
+        searchFieldLabel: 'Pesquise aqui o livro para adicionar...'
       ),
     );
 

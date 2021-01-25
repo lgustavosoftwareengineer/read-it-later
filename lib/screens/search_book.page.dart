@@ -46,7 +46,7 @@ class _SearchBookPageState extends State<SearchBookPage> {
             borderRadius: BorderRadius.all(Radius.circular(20))),
         height: MediaQuery.of(context).size.height / 20,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1.9),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: TextField(
             style: TextStyle(color: Colors.blueGrey),
             cursorColor: Colors.blueGrey,
