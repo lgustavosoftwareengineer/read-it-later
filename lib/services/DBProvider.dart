@@ -95,12 +95,12 @@ class DBProvider {
 // #region [DELETE] METHODS
   Future<int> deleteAllBooks() async {
     final db = await database;
-    return db.rawDelete("Delete * from Books");
+    return db.delete('Books');
   }
 
   Future<int> deleteAllTrash() async {
     final db = await database;
-    return db.rawDelete("Delete * from Trash");
+    return db.delete('Trash');
   }
 
   Future<int> sendBookFromTrash(int id) async {

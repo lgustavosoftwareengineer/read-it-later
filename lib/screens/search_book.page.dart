@@ -40,7 +40,11 @@ class _SearchBookPageState extends State<SearchBookPage> {
   @override
   Widget build(BuildContext context) {
     final _appBar = AppBar(
-      leading: Icon(Icons.search, color: Colors.blue),
+      leading: Navigator.canPop(context)
+          ? IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: Icon(Icons.arrow_back, color: Colors.blue))
+          : Icon(Icons.search, color: Colors.blue),
       title: TextField(
         decoration: InputDecoration(
           hintText: 'Digite aqui o nome do livro...',

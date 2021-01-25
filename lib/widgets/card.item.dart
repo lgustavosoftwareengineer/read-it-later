@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:read_it_later/Strings.dart';
-import 'package:read_it_later/controllers/books.controller.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
-import 'package:read_it_later/models/BookFromHttpRequest.dart';
-import 'package:read_it_later/models/BookFromSQLite.dart';
+import 'package:read_it_later/repositories/books.repository.dart';
 import 'package:read_it_later/screens/book_details.page.dart';
-import 'package:read_it_later/services/DBProvider.dart';
+import 'package:read_it_later/screens/wrapper.page.dart';
 import 'package:read_it_later/services/HttpRequests.dart';
 
 class NRCard extends StatefulWidget {
@@ -34,11 +31,11 @@ class NRCard extends StatefulWidget {
 }
 
 class _NRCardState extends State<NRCard> {
-  final booksController = BooksController.instance;
+  final booksRepository = BooksRepository.instance;
 
   handlerNRListTile() {
     HttpRequests().fetchBook(link: widget.selfLink).then((value) {
-      return booksController.add(item: value);
+      return booksRepository.add(item: value);
     });
     SnackBarHandler().showSnackbar(
       context: context,
