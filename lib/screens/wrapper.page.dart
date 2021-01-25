@@ -43,7 +43,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
         // indicatorPadding: EdgeInsets.all(5.0),
         indicatorColor: Colors.white,
       ),
-      backgroundColor: Colors.blue
+      backgroundColor: Theme.of(context).accentColor
       
     );
   }

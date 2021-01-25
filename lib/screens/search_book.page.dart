@@ -43,18 +43,21 @@ class _SearchBookPageState extends State<SearchBookPage> {
       leading: Navigator.canPop(context)
           ? IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back, color: Colors.blue))
-          : Icon(Icons.search, color: Colors.blue),
+              icon: Icon(Icons.arrow_back, color: Colors.white))
+          : Icon(Icons.search, color: Colors.white),
       title: TextField(
+        style: TextStyle(color: Colors.white),
+        cursorColor: Colors.white,
         decoration: InputDecoration(
           hintText: 'Digite aqui o nome do livro...',
-          hintStyle: TextStyle(color: Colors.grey),
+          hintStyle: TextStyle(color: Colors.white),
+          
           border: InputBorder.none,
         ),
         onChanged: searchOnChangeHandler,
       ),
 
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).accentColor,
       //elevation: 0,
     );
 
