@@ -28,14 +28,14 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
       controller: _controller,
       tabs: [
         Tab(
-          icon: new Icon(Icons.bookmark_outline),
+          icon: new Icon(Icons.bookmark_outline, color: Colors.white),
         ),
         Tab(
-          icon: new Icon(Icons.check),
+          icon: new Icon(Icons.check, color: Colors.white),
         ),
       ],
       labelColor: Colors.white,
-      unselectedLabelColor: Colors.white38,
+      unselectedLabelColor: Colors.white,
       indicatorSize: TabBarIndicatorSize.label,
       // indicatorPadding: EdgeInsets.all(5.0),
       indicatorColor: Colors.white,

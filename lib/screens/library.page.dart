@@ -40,7 +40,6 @@ class _LibraryPageState extends State<LibraryPage> {
           return Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              color: Colors.white,
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -103,8 +102,8 @@ class _LibraryPageState extends State<LibraryPage> {
     );
     final _floatingActionButton = FloatingActionButton.extended(
           onPressed: _handlerFloatButton,
-          label: Text('Deletar tudo'),
-          icon: Icon(Icons.delete));
+          label: Text('Deletar tudo', style: TextStyle(color: Colors.white)),
+          icon: Icon(Icons.delete, color: Colors.white));
     
     return Scaffold(
       appBar: _appBar,

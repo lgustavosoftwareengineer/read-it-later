@@ -86,7 +86,7 @@ class _NRCardState extends State<NRCard> {
                     Expanded(
                         child: Text(
                       "${widget.bookAuthor}",
-                      style: TextStyle(color: Colors.blueGrey),
+                      style: TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
                       overflow: TextOverflow.ellipsis,
                     ))
                   ],

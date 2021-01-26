@@ -40,13 +40,13 @@ class SearchWithSuggestionDelegate extends SearchDelegate<String> {
     final ThemeData theme = super.appBarTheme(context);
     return theme.copyWith(
       appBarTheme: AppBarTheme(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).canvasColor,
         iconTheme: IconThemeData(color: Theme.of(context).accentColor),
         actionsIconTheme: IconThemeData(color: Theme.of(context).accentColor),
         
       ),
-      inputDecorationTheme: InputDecorationTheme(hintStyle: Theme.of(context).textTheme.headline6.copyWith(color:Colors.blueGrey, fontSize: 16), border: InputBorder.none),
-      textTheme: TextTheme(headline6: TextStyle(fontSize: 16, color:Colors.blueGrey))
+      inputDecorationTheme: InputDecorationTheme(hintStyle: Theme.of(context).textTheme.headline6.copyWith(color:Theme.of(context).textTheme.bodyText1.color, fontSize: 16), border: InputBorder.none),
+      textTheme: TextTheme(headline6: TextStyle(fontSize: 16, color:Theme.of(context).textTheme.bodyText1.color))
     );
   }
 

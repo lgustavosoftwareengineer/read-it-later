@@ -37,11 +37,11 @@ class _SearchBookPageState extends State<SearchBookPage> {
         width: MediaQuery.of(context).size.height,
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: TextField(
-            style: TextStyle(color: Colors.blueGrey),
-            cursorColor: Colors.blueGrey,
+            style: TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
+            cursorColor: Theme.of(context).textTheme.bodyText1.color,
             decoration: InputDecoration(
               hintText: '${widget.searchTerm}',
-              hintStyle: TextStyle(color: Colors.blueGrey),
+              hintStyle: TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
               border: InputBorder.none,
             ),
             readOnly: true,
@@ -49,13 +49,13 @@ class _SearchBookPageState extends State<SearchBookPage> {
           ),
       ),
 
-      backgroundColor: Colors.white
+      backgroundColor: Theme.of(context).canvasColor
       //elevation: 0,
     );
     final _body = Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      color: Colors.white,
+      color: Theme.of(context).canvasColor,
       child: FutureBuilder<BooksFromHttpRequest>(
         future: books,
         builder: (context, snapshot) {

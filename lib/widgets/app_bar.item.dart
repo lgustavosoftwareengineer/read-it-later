@@ -19,11 +19,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       leading: widget.leading,
+      automaticallyImplyLeading: false,
       title: Text(
         '${widget.text}',
         style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.bold),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).canvasColor,
       
       elevation: 0,
     );

@@ -81,7 +81,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                         Divider(),
                         Text(widget.authors,
                             style: TextStyle(
-                                fontSize: 18, color: Colors.blueGrey)),
+                                fontSize: 18, color: Theme.of(context).textTheme.bodyText1.color)),
                         Divider(),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 5),
@@ -96,7 +96,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                         Divider(),
                         Text(widget.publishedDate,
                             style: TextStyle(
-                                fontSize: 18, color: Colors.blueGrey)),
+                                fontSize: 18, color: Theme.of(context).textTheme.bodyText1.color)),
                       ],
                     ),
                   ),
@@ -120,7 +120,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                       const EdgeInsets.only(bottom: 20, left: 20, right: 20),
                   child: Text(
                     _parseHtmlString(widget.description),
-                    style: TextStyle(fontSize: 20, color: Colors.blueGrey),
+                    style: TextStyle(fontSize: 20, color: Theme.of(context).textTheme.bodyText1.color),
                     textAlign: TextAlign.center,
                   ),
                 ),

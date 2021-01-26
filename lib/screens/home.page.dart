@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:read_it_later/Strings.dart';
+import 'package:read_it_later/controllers/theme.controller.dart';
 import 'package:read_it_later/handlers/search_delgates.handler.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/BookFromSQLite.dart';
@@ -40,7 +41,6 @@ class _HomePageState extends State<HomePage> {
           return Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              color: Colors.white,
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -79,13 +79,40 @@ class _HomePageState extends State<HomePage> {
     );
     final _floatingActionButton = FloatingActionButton.extended(
         onPressed: () => SearchDelgateHandler().handlerShowSearch(context),
-        label: Text(Strings.homeTextFloatingActionButton),
-        icon: Icon(Icons.add));
+        label: Text(
+          Strings.homeTextFloatingActionButton,
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: Icon(
+          Icons.add,
+          color: Colors.white,
+        ));
+    final _drawer = Drawer(
+      // Add a ListView to the drawer. This ensures the user can scroll
+      // through the options in the drawer if there isn't enough vertical
+      // space to fit everything.
+      child: ListView(
+        // Important: Remove any padding from the ListView.
+        padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height / 15),
+        children: <Widget>[
+          ListTile(
+            leading: ThemeController.instance.isDarkTheme == true ? Icon(Icons.brightness_2_outlined) : Icon(Icons.brightness_1_outlined),
+            horizontalTitleGap: 0,
+            title: ThemeController.instance.isDarkTheme == true ? Text('Tema light') :Text('Tema dark'),
+            onTap: () {
+              ThemeController.instance.changeTheme();
+            },
+          ),
 
+        ],
+      ),
+    );
     return Scaffold(
       appBar: _appBar,
       body: _body,
       floatingActionButton: _floatingActionButton,
+      drawer: _drawer,
     );
   }
 }
