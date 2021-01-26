@@ -1,15 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:read_it_later/Strings.dart';
 import 'package:read_it_later/handlers/search_delgates.handler.dart';
 import 'package:read_it_later/models/BookFromHttpRequest.dart';
 import 'package:read_it_later/services/HttpRequests.dart';
-import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
-import 'package:read_it_later/widgets/custom_search_delgates.item.dart';
-import 'package:read_it_later/widgets/text.item.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SearchBookPage extends StatefulWidget {
   final String searchTerm;
@@ -45,9 +40,9 @@ class _SearchBookPageState extends State<SearchBookPage> {
             ),
             borderRadius: BorderRadius.all(Radius.circular(20))),
         height: MediaQuery.of(context).size.height / 20,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: TextField(
+        width: MediaQuery.of(context).size.height,
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: TextField(
             style: TextStyle(color: Colors.blueGrey),
             cursorColor: Colors.blueGrey,
             decoration: InputDecoration(
@@ -58,7 +53,6 @@ class _SearchBookPageState extends State<SearchBookPage> {
             readOnly: true,
             onTap: () => SearchDelgateHandler().handlerShowSearch(context),
           ),
-        ),
       ),
 
       backgroundColor: Theme.of(context).accentColor,
