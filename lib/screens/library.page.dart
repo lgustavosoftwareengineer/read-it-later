@@ -49,7 +49,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   return Dismissible(
                     key: Key(index.toString()),
                     background: DismissibleContainerItem(
-                      color: Colors.greenAccent,
+                      color: Colors.blueAccent,
                       icon: Icon(Icons.refresh),
                       direction: Alignment.centerLeft,
                     ),

@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                     key: Key(index.toString()),
                     direction: DismissDirection.startToEnd,
                     background: DismissibleContainerItem(
-                        color: Colors.blueAccent,
+                        color: Colors.greenAccent,
                         icon: Icon(Icons.check),
                         direction: Alignment.centerLeft),
                     onDismissed: (direction) {
