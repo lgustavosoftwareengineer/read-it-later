@@ -30,15 +30,9 @@ class _SearchBookPageState extends State<SearchBookPage> {
       leading: Navigator.canPop(context)
           ? IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back, color: Colors.white))
-          : Icon(Icons.search, color: Colors.white),
+              icon: Icon(Icons.arrow_back, color: Theme.of(context).accentColor))
+          : Icon(Icons.search, color: Theme.of(context).accentColor),
       title: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(
-              color: Colors.white,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(20))),
         height: MediaQuery.of(context).size.height / 20,
         width: MediaQuery.of(context).size.height,
         padding: EdgeInsets.symmetric(horizontal: 15),
@@ -55,7 +49,7 @@ class _SearchBookPageState extends State<SearchBookPage> {
           ),
       ),
 
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Colors.white
       //elevation: 0,
     );
 
