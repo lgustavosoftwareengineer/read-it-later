@@ -35,6 +35,19 @@ class SearchWithSuggestionDelegate extends SearchDelegate<String> {
     ];
   }
 
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    final ThemeData theme = super.appBarTheme(context);
+    return theme.copyWith(
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.blueGrey),
+        actionsIconTheme: IconThemeData(color: Colors.blueGrey)
+      ),
+      textTheme: TextTheme(headline6: TextStyle(fontSize: 16, decorationColor: Colors.white))
+    );
+  }
+
   ///OnSubmit in the keyboard, returns the [query]
   @override
   void showResults(BuildContext context) {
@@ -59,8 +72,8 @@ class SearchWithSuggestionDelegate extends SearchDelegate<String> {
           itemCount: _oldFilters.length,
           itemBuilder: (context, index) {
             return ListTile(
-              leading: Icon(Icons.restore),
-              title: Text("${_oldFilters[index]}"),
+              leading: Icon(Icons.restore, color: Colors.blueGrey,),
+              title: Text("${_oldFilters[index]}", style: TextStyle(color: Colors.blueGrey),),
               onTap: () {
                 close(context, _oldFilters[index]);
                 Navigator.push(
