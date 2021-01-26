@@ -41,10 +41,12 @@ class SearchWithSuggestionDelegate extends SearchDelegate<String> {
     return theme.copyWith(
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.blueGrey),
-        actionsIconTheme: IconThemeData(color: Colors.blueGrey)
+        iconTheme: IconThemeData(color: Theme.of(context).accentColor),
+        actionsIconTheme: IconThemeData(color: Theme.of(context).accentColor),
+        
       ),
-      textTheme: TextTheme(headline6: TextStyle(fontSize: 16, decorationColor: Colors.white))
+      inputDecorationTheme: InputDecorationTheme(hintStyle: Theme.of(context).textTheme.headline6.copyWith(color:Colors.blueGrey, fontSize: 16), border: InputBorder.none),
+      textTheme: TextTheme(headline6: TextStyle(fontSize: 16, color:Colors.blueGrey))
     );
   }
 
@@ -72,8 +74,8 @@ class SearchWithSuggestionDelegate extends SearchDelegate<String> {
           itemCount: _oldFilters.length,
           itemBuilder: (context, index) {
             return ListTile(
-              leading: Icon(Icons.restore, color: Colors.blueGrey,),
-              title: Text("${_oldFilters[index]}", style: TextStyle(color: Colors.blueGrey),),
+              leading: Icon(Icons.restore, color: Theme.of(context).accentColor,),
+              title: Text("${_oldFilters[index]}", style: TextStyle(color: Theme.of(context).accentColor),),
               onTap: () {
                 close(context, _oldFilters[index]);
                 Navigator.push(
