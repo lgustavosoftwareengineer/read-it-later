@@ -52,7 +52,6 @@ class _SearchBookPageState extends State<SearchBookPage> {
       backgroundColor: Colors.white
       //elevation: 0,
     );
-
     final _body = Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,

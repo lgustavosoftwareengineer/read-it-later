@@ -4,14 +4,11 @@ import 'package:read_it_later/handlers/search_delgates.handler.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/BookFromSQLite.dart';
 import 'package:read_it_later/repositories/books.repository.dart';
-import 'package:read_it_later/screens/search_book.page.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:read_it_later/widgets/body.item.dart';
 import 'package:read_it_later/widgets/card.item.dart';
-import 'package:read_it_later/widgets/custom_search_delgates.item.dart';
 import 'package:read_it_later/widgets/dismissible_container.item.dart';
 import 'package:read_it_later/widgets/text.item.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,13 +23,11 @@ class _HomePageState extends State<HomePage> {
         message: 'Leitura do livro ${item.title} concluida com sucesso');
   }
 
-  _handlerFloatButton() {
-    return Navigator.push(
-        context, MaterialPageRoute(builder: (context) => SearchBookPage()));
-  }
-
   @override
   Widget build(BuildContext context) {
+    final _appBar = CustomAppBar(
+      text: Strings.titleHomePage,
+    );
     final _body = FutureBuilder<List<BookSQLite>>(
       future: BooksRepository.instance.items,
       builder:
@@ -82,16 +77,15 @@ class _HomePageState extends State<HomePage> {
         }
       },
     );
+    final _floatingActionButton = FloatingActionButton.extended(
+        onPressed: () => SearchDelgateHandler().handlerShowSearch(context),
+        label: Text(Strings.homeTextFloatingActionButton),
+        icon: Icon(Icons.add));
+
     return Scaffold(
-      appBar: CustomAppBar(
-          text: 'O Que Ler Depois?',
-          ),
+      appBar: _appBar,
       body: _body,
-      floatingActionButton: FloatingActionButton.extended(
-          //onPressed: _handlerFloatButton,
-          onPressed: () => SearchDelgateHandler().handlerShowSearch(context),
-          label: Text('Adicionar'),
-          icon: Icon(Icons.add)),
+      floatingActionButton: _floatingActionButton,
     );
   }
 }

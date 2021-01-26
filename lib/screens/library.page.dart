@@ -27,8 +27,9 @@ class _LibraryPageState extends State<LibraryPage> {
 
   @override
   Widget build(BuildContext context) {
+    final _appBar = CustomAppBar(text: Strings.titleLibraryPage);
     final _body = FutureBuilder<List<BookSQLite>>(
-      future: BooksRepository.instance.trash,
+      future: books,
       builder:
           (BuildContext context, AsyncSnapshot<List<BookSQLite>> snapshot) {
         if (snapshot.hasData) {
@@ -100,13 +101,15 @@ class _LibraryPageState extends State<LibraryPage> {
         }
       },
     );
-    return Scaffold(
-      appBar: CustomAppBar(text: 'Leituras concluídas',),
-      body: _body,
-      floatingActionButton: FloatingActionButton.extended(
+    final _floatingActionButton = FloatingActionButton.extended(
           onPressed: _handlerFloatButton,
           label: Text('Deletar tudo'),
-          icon: Icon(Icons.delete)),
+          icon: Icon(Icons.delete));
+    
+    return Scaffold(
+      appBar: _appBar,
+      body: _body,
+      floatingActionButton: _floatingActionButton,
     );
   }
 }

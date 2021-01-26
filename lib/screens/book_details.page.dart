@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:read_it_later/widgets/app_bar.item.dart';
 import 'package:html/parser.dart';
 
-import '../Strings.dart';
-
 class BookDetailsPage extends StatefulWidget {
   final String id;
   final String title;
@@ -37,94 +35,105 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-          leading: IconButton(
-            icon: Icon(
-              Icons.keyboard_arrow_left,
-              color: Theme.of(context).accentColor,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+    final _appBar = CustomAppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.keyboard_arrow_left,
+            color: Theme.of(context).accentColor,
           ),
-          text: '${widget.title}'),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Image.network(
-                        widget.image,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
-                            child: Text(
-                              'Autor',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).accentColor),
-                            ),
-                          ),
-                          Divider(),
-                          Text(widget.authors, style: TextStyle(fontSize: 18, color: Colors.blueGrey)),
-                          Divider(),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
-                            child: Text(
-                              'Data de publicação',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).accentColor),
-                            ),
-                          ),
-                          Divider(),
-                          Text(widget.publishedDate,
-                              style: TextStyle(fontSize: 18, color: Colors.blueGrey)),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Column(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        text: '${widget.title}');
+    final _body = Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Divider(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Text('Descrição',
-                        style: TextStyle(
-                            fontSize: 23, fontWeight: FontWeight.bold, color: Theme.of(context).accentColor)),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Image.network(
+                      widget.image,
+                    ),
                   ),
-                  Divider(),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                    child: Text(
-                      _parseHtmlString(widget.description),
-                      style: TextStyle(fontSize: 20, color: Colors.blueGrey),
-                      textAlign: TextAlign.center,
+                    padding: const EdgeInsets.all(5),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Text(
+                            'Autor',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                        Divider(),
+                        Text(widget.authors,
+                            style: TextStyle(
+                                fontSize: 18, color: Colors.blueGrey)),
+                        Divider(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Text(
+                            'Data de publicação',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                        Divider(),
+                        Text(widget.publishedDate,
+                            style: TextStyle(
+                                fontSize: 18, color: Colors.blueGrey)),
+                      ],
                     ),
                   ),
                 ],
-
+              ),
+            ),
+            Column(
+              children: [
+                Divider(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Text('Descrição',
+                      style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).accentColor)),
                 ),
-            ],
-          ),
+                Divider(),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                  child: Text(
+                    _parseHtmlString(widget.description),
+                    style: TextStyle(fontSize: 20, color: Colors.blueGrey),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
+    );
+    
+    return Scaffold(
+      appBar: _appBar,
+      body: _body,
     );
   }
 }
