@@ -11,7 +11,7 @@ class TextItem extends StatelessWidget {
     return Text(
       data,
       style: TextStyle(
-          color: Theme.of(context).accentTextTheme.bodyText1.color,
+          color: Theme.of(context).textTheme.bodyText1.color,
           fontSize: MediaQuery.of(context).size.width / 25),
       textAlign: TextAlign.center,
       overflow: TextOverflow.clip,
