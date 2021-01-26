@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
     );
     return Scaffold(
       appBar: CustomAppBar(
-          text: 'O Quê Ler Depois?',
+          text: 'O Que Ler Depois?',
           ),
       body: _body,
       floatingActionButton: FloatingActionButton.extended(
