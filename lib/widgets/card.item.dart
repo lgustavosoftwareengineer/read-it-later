@@ -32,8 +32,13 @@ class NRCard extends StatefulWidget {
 
 class _NRCardState extends State<NRCard> {
   final booksRepository = BooksRepository.instance;
+  bool _hasBeenPressed = false;
 
   handlerNRListTile() {
+    setState(() {
+      _hasBeenPressed = !_hasBeenPressed;
+    });
+
     HttpRequests().fetchBook(link: widget.selfLink).then((value) {
       return booksRepository.add(item: value);
     });
@@ -50,17 +55,22 @@ class _NRCardState extends State<NRCard> {
     final NRListTile = widget.bookTitle == '[error]'
         ? Container()
         : TextButton(
+    
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => BookDetailsPage(
-                          title: widget.bookTitle,
-                          authors: widget.bookAuthor,
-                          description: widget.bookDescription,
+                          title: widget.bookTitle ?? '\"Título desconhecido\"',
+                          authors:
+                              widget.bookAuthor ?? '\"Autor desconhecido\"',
+                          description: widget.bookDescription ??
+                              '\"Livro sem descrição\"',
                           image: widget.imageLink,
-                          publishedDate: widget.bookPublishedDate,
-                          selfLink: widget.selfLink,
+                          publishedDate:
+                              widget.bookPublishedDate ?? '\"Desconhecida\"',
+                          selfLink: widget.selfLink ??
+                              '\"Link próprio desconhecido\"',
                         )),
               );
             },
@@ -79,14 +89,16 @@ class _NRCardState extends State<NRCard> {
                 title: Text(
                   "${widget.bookTitle}",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor, fontWeight: FontWeight.bold),
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.bold),
                 ),
                 subtitle: Row(
                   children: <Widget>[
                     Expanded(
                         child: Text(
                       "${widget.bookAuthor}",
-                      style: TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
+                      style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyText1.color),
                       overflow: TextOverflow.ellipsis,
                     ))
                   ],
@@ -94,9 +106,12 @@ class _NRCardState extends State<NRCard> {
                 trailing: widget.activeIcon == true
                     ? IconButton(
                         icon: Icon(Icons.bookmark_outline_sharp),
-                        color: Theme.of(context).accentColor,
+                        color: _hasBeenPressed
+                            ? Theme.of(context).accentColor
+                            : Theme.of(context).textTheme.bodyText1.color,
                         iconSize: 30.0,
-                        onPressed: handlerNRListTile)
+                        onPressed: handlerNRListTile
+                        )
                     : Container(width: 30, height: 30)));
 
     return Card(
