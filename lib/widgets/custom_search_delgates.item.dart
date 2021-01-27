@@ -43,6 +43,7 @@ class SearchWithSuggestionDelegate extends SearchDelegate<String> {
         backgroundColor: Theme.of(context).canvasColor,
         iconTheme: IconThemeData(color: Theme.of(context).accentColor),
         actionsIconTheme: IconThemeData(color: Theme.of(context).accentColor),
+        titleSpacing: 0
         
       ),
       inputDecorationTheme: InputDecorationTheme(hintStyle: Theme.of(context).textTheme.headline6.copyWith(color:Theme.of(context).textTheme.bodyText1.color, fontSize: 16), border: InputBorder.none),

@@ -27,6 +27,7 @@ class _SearchBookPageState extends State<SearchBookPage> {
   @override
   Widget build(BuildContext context) {
     final _appBar = AppBar(
+      titleSpacing: 0,
       leading: Navigator.canPop(context)
           ? IconButton(
               onPressed: () => Navigator.pop(context),
