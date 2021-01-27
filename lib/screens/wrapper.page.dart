@@ -11,13 +11,11 @@ class Wrapper extends StatefulWidget {
 class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    final _controller = new TabController(length: 2, vsync: this);
     final _body = Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       alignment: Alignment.center,
       child: TabBarView(
-        controller: _controller,
         children: [
           HomePage(),
           LibraryPage(),
@@ -25,7 +23,6 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
       ),
     );
     final _bottomNavigationBar = TabBar(
-      controller: _controller,
       tabs: [
         Tab(
           icon: new Icon(Icons.bookmark_outline, color: Colors.white),
@@ -41,10 +38,13 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
       indicatorColor: Colors.white,
     );
 
-    return Scaffold(
-        body: _body,
-        bottomNavigationBar: _bottomNavigationBar,
-        backgroundColor: Theme.of(context).accentColor
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          body: _body,
+          bottomNavigationBar: _bottomNavigationBar,
+          backgroundColor: Theme.of(context).accentColor
+      ),
     );
   }
 }
