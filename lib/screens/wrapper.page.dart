@@ -25,14 +25,15 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
     final _bottomNavigationBar = TabBar(
       tabs: [
         Tab(
-          icon: new Icon(Icons.bookmark_outline, color: Colors.white),
+          icon: new Icon(Icons.bookmark_outline),
         ),
         Tab(
-          icon: new Icon(Icons.check, color: Colors.white),
+          icon: new Icon(Icons.check),
         ),
       ],
       labelColor: Colors.white,
-      unselectedLabelColor: Colors.white,
+      unselectedLabelColor: Colors.white38,
+      automaticIndicatorColorAdjustment: true,
       indicatorSize: TabBarIndicatorSize.label,
       // indicatorPadding: EdgeInsets.all(5.0),
       indicatorColor: Colors.white,
