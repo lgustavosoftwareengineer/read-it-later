@@ -97,9 +97,9 @@ class _HomePageState extends State<HomePage> {
             vertical: MediaQuery.of(context).size.height / 15),
         children: <Widget>[
           ListTile(
-            leading: ThemeController.instance.isDarkTheme == true ? Icon(Icons.brightness_2_outlined) : Icon(Icons.brightness_1_outlined),
+            leading: ThemeController.instance.getIsDark() == true ? Icon(Icons.brightness_2_outlined) : Icon(Icons.brightness_1_outlined),
             horizontalTitleGap: 0,
-            title: ThemeController.instance.isDarkTheme == true ? Text('Tema light') :Text('Tema dark'),
+            title: ThemeController.instance.getIsDark() == true ? Text('Tema light') :Text('Tema dark'),
             onTap: () {
               ThemeController.instance.changeTheme();
             },

@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
                 accentTextTheme:
                     TextTheme(bodyText1: TextStyle(color: Colors.white38,))
                 ),
-            themeMode: ThemeController.instance.isDarkTheme
+            themeMode: ThemeController.instance.getIsDark()
                 ? ThemeMode.dark
                 : ThemeMode.light,
             home: DefaultTabController(length: 3, child: Wrapper()),
