@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final _appBar = CustomAppBar(
       text: Strings.titleHomePage,
+      hasSpace: true
     );
     final _body = FutureBuilder<List<BookSQLite>>(
       future: BooksRepository.instance.items,

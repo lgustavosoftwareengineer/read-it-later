@@ -27,7 +27,7 @@ class _LibraryPageState extends State<LibraryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _appBar = CustomAppBar(text: Strings.titleLibraryPage);
+    final _appBar = CustomAppBar(text: Strings.titleLibraryPage, hasSpace: true);
     final _body = FutureBuilder<List<BookSQLite>>(
       future: books,
       builder:
@@ -49,7 +49,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   return Dismissible(
                     key: Key(index.toString()),
                     background: DismissibleContainerItem(
-                      color: Colors.blueAccent,
+                      color: Colors.greenAccent,
                       icon: Icon(Icons.refresh),
                       direction: Alignment.centerLeft,
                     ),

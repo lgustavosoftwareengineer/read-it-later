@@ -45,7 +45,9 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
             Navigator.pop(context);
           },
         ),
-        text: '${widget.title}');
+        text: '${widget.title}',
+        hasSpace: false
+        );
     final _body = Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
