@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:read_it_later/Strings.dart';
 import 'package:read_it_later/controllers/theme.controller.dart';
+import 'package:read_it_later/handlers/bottom_drawer.handler.dart';
 import 'package:read_it_later/handlers/search_delgates.handler.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
 import 'package:read_it_later/models/BookFromSQLite.dart';
@@ -26,10 +27,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final _appBar = CustomAppBar(
-      text: Strings.titleHomePage,
-      hasSpace: true
-    );
+    final _appBar =
+        CustomAppBar(text: Strings.titleHomePage, hasSpace: true, actions: [
+      IconButton(
+        icon: Icon(Icons.menu,
+            color: Theme.of(context).textTheme.bodyText1.color),
+        onPressed: () => BottomDrawerHandler().showMenu(context),
+      )
+    ]);
     final _body = FutureBuilder<List<BookSQLite>>(
       future: BooksRepository.instance.items,
       builder:
@@ -88,32 +93,10 @@ class _HomePageState extends State<HomePage> {
           Icons.add,
           color: Colors.white,
         ));
-    final _drawer = Drawer(
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
-      child: ListView(
-        // Important: Remove any padding from the ListView.
-        padding: EdgeInsets.symmetric(
-            vertical: MediaQuery.of(context).size.height / 15),
-        children: <Widget>[
-          ListTile(
-            leading: ThemeController.instance.getIsDark() == true ? Icon(Icons.brightness_2_outlined) : Icon(Icons.brightness_1_outlined),
-            horizontalTitleGap: 0,
-            title: ThemeController.instance.getIsDark() == true ? Text('Tema light') :Text('Tema dark'),
-            onTap: () {
-              ThemeController.instance.changeTheme();
-            },
-          ),
-
-        ],
-      ),
-    );
     return Scaffold(
       appBar: _appBar,
       body: _body,
       floatingActionButton: _floatingActionButton,
-      drawer: _drawer,
     );
   }
 }
