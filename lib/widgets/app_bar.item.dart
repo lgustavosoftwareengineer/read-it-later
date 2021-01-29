@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:read_it_later/controllers/theme.controller.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String text;
   final Widget leading;
   final bool hasSpace;
-  CustomAppBar({Key key, this.text, this.leading, this.hasSpace})
+  final List<Widget> actions;
+  CustomAppBar({Key key, this.text, this.leading, this.hasSpace, this.actions})
       : preferredSize = Size.fromHeight(kToolbarHeight),
         super(key: key);
 
@@ -26,6 +28,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         style: TextStyle(
             color: Theme.of(context).accentColor, fontWeight: FontWeight.bold),
       ),
+      actions: widget.actions,
       backgroundColor: Theme.of(context).canvasColor,
       titleSpacing: widget.hasSpace ? 15 : 0,
       elevation: 0,
