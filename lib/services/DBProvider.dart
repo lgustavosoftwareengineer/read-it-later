@@ -24,7 +24,7 @@ class DBProvider {
     String path = join(documentsDirectory.path, "TestDB.db");
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
-      await db.execute("CREATE TABLE Books ("
+      await db.execute("CREATE TABLE NextReading ("
           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
           "bookId TEXT,"
           "title TEXT,"
@@ -35,7 +35,18 @@ class DBProvider {
           "selfLink TEXT"
           ")");
 
-      await db.execute("CREATE TABLE Trash ("
+      await db.execute("CREATE TABLE NowReading ("
+          "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+          "bookId TEXT,"
+          "title TEXT,"
+          "authors TEXT,"
+          "image TEXT,"
+          "description TEXT,"
+          "publishedDate TEXT,"
+          "selfLink TEXT"
+          ")");
+
+      await db.execute("CREATE TABLE CompletedBooks ("
           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
           "bookId TEXT,"
           "title TEXT,"
@@ -49,43 +60,23 @@ class DBProvider {
   }
 
 // #region [CREATE] METHODS
-  Future<int> newBook(BookSQLite book) async {
+  Future<int> newItem(BookSQLite book, String table) async {
     final db = await database;
-    var res = await db.insert("Books", book.toMap());
-    return res;
-  }
-
-  Future<int> newBookInTrash(BookSQLite book) async {
-    final db = await database;
-    var res = await db.insert("Trash", book.toMap());
+    var res = await db.insert(table, book.toMap());
     return res;
   }
 // #endregion
 
 // #region [GET] METHODS
-  Future<BookSQLite> getBook(int id) async {
+  Future<BookSQLite> getOne(int id, String table) async {
     final db = await database;
-    var res = await db.query("Books", where: "id = ?", whereArgs: [id]);
+    var res = await db.query(table, where: "id = ?", whereArgs: [id]);
     return res.isNotEmpty ? BookSQLite.fromMap(res.first) : Null;
   }
 
-  Future<BookSQLite> getBookFromTrash(int id) async {
+  Future<List<BookSQLite>> getAll(String table) async {
     final db = await database;
-    var res = await db.query("Trash", where: "id = ?", whereArgs: [id]);
-    return res.isNotEmpty ? BookSQLite.fromMap(res.first) : Null;
-  }
-
-  Future<List<BookSQLite>> getAllBooks() async {
-    final db = await database;
-    var res = await db.query("Books");
-    List<BookSQLite> list =
-        res.isNotEmpty ? res.map((c) => BookSQLite.fromMap(c)).toList() : [];
-    return list;
-  }
-
-  Future<List<BookSQLite>> getAllBooksFromTrash() async {
-    final db = await database;
-    var res = await db.query("Trash");
+    var res = await db.query(table);
     List<BookSQLite> list =
         res.isNotEmpty ? res.map((c) => BookSQLite.fromMap(c)).toList() : [];
     return list;
@@ -93,26 +84,14 @@ class DBProvider {
 // #endregion
 
 // #region [DELETE] METHODS
-  Future<int> deleteAllBooks() async {
+  Future<int> deleteAll(String table) async {
     final db = await database;
-    return db.delete('Books');
+    return db.delete(table);
   }
 
-  Future<int> deleteAllTrash() async {
+  Future<int> deleteOne(int id, String table) async {
     final db = await database;
-    return db.delete('Trash');
-  }
-
-  Future<int> sendBookFromTrash(int id) async {
-    final db = await database;
-    final res = await getBook(id);
-    await newBookInTrash(res);
-    return await db.delete("Books", where: "id = ?", whereArgs: [id]);
-  }
-
-  Future<int> removePermanentilyTheBook(int id) async {
-    final db = await database;
-    return db.delete("Trash", where: "id = ?", whereArgs: [id]);
+    return await db.delete(table, where: "id = ?", whereArgs: [id]);
   }
 }
 // #endregion
