@@ -25,28 +25,21 @@ class BottomDrawerHandler {
                     height: (56 * 6).toDouble(),
                     child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(16.0),
-                              topRight: Radius.circular(16.0),
-                            ),
+
                             color: Theme.of(context).canvasColor),
                         child: Stack(
                           alignment: Alignment(0, 0),
-                          overflow: Overflow.visible,
+                          clipBehavior: Clip.none,
                           children: <Widget>[
                             Positioned(
-                              top: -36,
+                              top: -53,
                               child: Container(
-                                // decoration: BoxDecoration(
-                                //     borderRadius:
-                                //         BorderRadius.all(Radius.circular(50)),
-                                //     border: Border.all(
-                                //         color: Theme.of(context).canvasColor,
-                                //         width: 10)),
-                                padding: EdgeInsets.all(8),
-                                child: Center(
-                                  child: Text('Configurações'),
-                                ),
+                                padding: EdgeInsets.symmetric(vertical: 8),
+                                width: MediaQuery.of(context).size.width,
+                                child: ListTile(
+                                  title: Text('Configurações', style: TextStyle(fontWeight: FontWeight.bold)),
+                                )
+                                
                               ),
                             ),
                             Positioned(
@@ -61,8 +54,7 @@ class BottomDrawerHandler {
                                           : 'Tema escuro',
                                       style: TextStyle(color: Theme.of(context).textTheme.bodyText1.color),
                                     ),
-                                    leading:
-                                        Icon(Icons.lightbulb_outline),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
                                     onTap: () {
                                       ThemeController.instance.changeTheme();
                                     },
@@ -72,10 +64,7 @@ class BottomDrawerHandler {
                             )
                           ],
                         ))),
-                Container(
-                  height: 56,
-                  color: Theme.of(context).cardColor,
-                )
+
               ],
             ),
           );
