@@ -10,12 +10,10 @@ class ThemeController extends ChangeNotifier {
 
   ThemeController() {
     StorageManager.readData('themeMode').then((value) {
-      print('value read from storage: ' + value.toString());
       var themeMode = value ?? 'light';
       if (themeMode == 'light') {
         _isDarkTheme = false;
       } else {
-        print('setting dark theme');
         _isDarkTheme = true;
       }
       notifyListeners();
