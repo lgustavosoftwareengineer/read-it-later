@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:read_it_later/handlers/snackbar.handler.dart';
-import 'package:read_it_later/repositories/books.repository.dart';
+import 'package:read_it_later/screens/Library/library.controller.dart';
 import 'package:read_it_later/screens/book_details.page.dart';
-import 'package:read_it_later/screens/wrapper.page.dart';
 import 'package:read_it_later/services/HttpRequests.dart';
 
 class NRCard extends StatefulWidget {
+  final int id;
   final String bookTitle;
   final String bookAuthor;
   final String imageLink;
@@ -24,14 +24,13 @@ class NRCard extends StatefulWidget {
       this.icon,
       this.activeIcon,
       this.bookDescription,
-      this.bookPublishedDate})
+      this.bookPublishedDate, this.id})
       : super(key: key);
   @override
   _NRCardState createState() => _NRCardState();
 }
 
 class _NRCardState extends State<NRCard> {
-  final booksRepository = BooksRepository.instance;
   bool _hasBeenPressed = false;
 
   handlerNRListTile() {
@@ -40,7 +39,7 @@ class _NRCardState extends State<NRCard> {
     });
 
     HttpRequests().fetchBook(link: widget.selfLink).then((value) {
-      return booksRepository.add(item: value);
+      return LibraryController.instance.addBookInNextReading(item: value);
     });
     SnackBarHandler().showSnackbar(
       context: context,
@@ -55,12 +54,15 @@ class _NRCardState extends State<NRCard> {
     final NRListTile = widget.bookTitle == '[error]'
         ? Container()
         : TextButton(
-    
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => BookDetailsPage(
+                      
+                      freeConclutedBooks: false,
+                      freeNextReading: false,
+                          id: widget.id,
                           title: widget.bookTitle ?? '\"Título desconhecido\"',
                           authors:
                               widget.bookAuthor ?? '\"Autor desconhecido\"',
@@ -74,7 +76,6 @@ class _NRCardState extends State<NRCard> {
                         )),
               );
             },
-            onLongPress: () => print('opa'),
             child: ListTile(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -89,7 +90,7 @@ class _NRCardState extends State<NRCard> {
                 title: Text(
                   "${widget.bookTitle}",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).textTheme.bodyText1.color,
                       fontWeight: FontWeight.bold),
                 ),
                 subtitle: Row(
@@ -98,7 +99,8 @@ class _NRCardState extends State<NRCard> {
                         child: Text(
                       "${widget.bookAuthor}",
                       style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1.color),
+                          color: Theme.of(context).textTheme.bodyText1.color,
+                          fontWeight: FontWeight.w400),
                       overflow: TextOverflow.ellipsis,
                     ))
                   ],
@@ -110,8 +112,7 @@ class _NRCardState extends State<NRCard> {
                             ? Theme.of(context).accentColor
                             : Theme.of(context).textTheme.bodyText1.color,
                         iconSize: 30.0,
-                        onPressed: handlerNRListTile
-                        )
+                        onPressed: handlerNRListTile)
                     : Container(width: 30, height: 30)));
 
     return Card(

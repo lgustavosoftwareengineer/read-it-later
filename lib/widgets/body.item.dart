@@ -7,8 +7,11 @@ class BodyItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        
         padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width / 10),
+          horizontal: MediaQuery.of(context).size.width / 10,
+          vertical: MediaQuery.of(context).size.height / 10
+        ),
         child: Center(child: centerText));
   }
 }
