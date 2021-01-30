@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:read_it_later/screens/library.page.dart';
 
-import 'home.page.dart';
+import 'Library/library.page.dart';
+import 'Home/home.page.dart';
 
 class Wrapper extends StatefulWidget {
   @override
@@ -25,10 +25,11 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
     final _bottomNavigationBar = TabBar(
       tabs: [
         Tab(
-          icon: new Icon(Icons.bookmark_outline),
+          icon: new Icon(Icons.home_outlined),
+
         ),
         Tab(
-          icon: new Icon(Icons.check),
+          icon: new Icon(Icons.library_books_outlined)
         ),
       ],
       labelColor: Colors.white,
