@@ -39,7 +39,7 @@
 # :pushpin: Tabela de Conteúdo
 
 - 💻 [Tecnologias](#computer-technologies)
-- 🔗 [Link para download do APK](https://drive.google.com/file/d/1VEETithFT4k1VkOJcsoiFQm3c3U3-1n0/view?usp=sharing)
+- 🔗 [Link para download do APK](https://drive.google.com/u/1/uc?id=1VEETithFT4k1VkOJcsoiFQm3c3U3-1n0&export=download)
 - 👷 [Como fazer o projeto funcionar na sua máquina](#construction_worker-how-to-run)
 - 🐛 [Issues (Problemas)](#bug-issues)
 - 🎉 [Contribuir com o projeto](#tada-contributing)
