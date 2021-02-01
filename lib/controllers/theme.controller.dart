@@ -1,23 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:read_it_later/handlers/storage_manager.handler.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeController extends ChangeNotifier {
   bool _isDarkTheme;
 
   bool getIsDark() => _isDarkTheme;
 
-
   ThemeController() {
-    StorageManager.readData('themeMode').then((value) {
-      var themeMode = value ?? 'light';
-      if (themeMode == 'light') {
-        _isDarkTheme = false;
-      } else {
-        _isDarkTheme = true;
-      }
-      notifyListeners();
-    });
+    try {
+      StorageManager.readData('themeMode').then((value) {
+        var themeMode = value ?? 'light';
+        if (themeMode == 'light') {
+          _isDarkTheme = false;
+        } else {
+          _isDarkTheme = true;
+        }
+        notifyListeners();
+      });
+    } catch (err) {}
   }
 
   void setDarkMode() async {
@@ -31,8 +31,6 @@ class ThemeController extends ChangeNotifier {
     StorageManager.saveData('themeMode', 'light');
     notifyListeners();
   }
-
-  
 
   /// Utilizando o Design pattern singleton para assim poder
   /// utilizar a mesma instancia da classe em diferentes arquivos.

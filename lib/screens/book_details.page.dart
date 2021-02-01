@@ -127,11 +127,11 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
-                          icon: Icon(Icons.book,
+                          icon: Icon(Icons.chrome_reader_mode_outlined,
                               color: Theme.of(context).accentColor),
                           onPressed: () {
                             HomeController.instance.addBookInNowReading(
-                                item: new BookFromHttpRequest(
+                              item: new BookFromHttpRequest(
                               image: widget.image,
                               authors: widget.authors,
                               description: widget.description,
@@ -194,7 +194,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                               color: Theme.of(context).accentColor),
                           onPressed: () {
                             HomeController.instance.addBookInNowReading(
-                                item: new BookFromHttpRequest(
+                              item: new BookFromHttpRequest(
                               image: widget.image,
                               authors: widget.authors,
                               description: widget.description,
