@@ -39,7 +39,7 @@
 # :pushpin: Tabela de Conteúdo
 
 - [Tecnologias](#computer-technologies)
-- [Link para download do APK](#computer-technologies)
+- [Link para download do APK](https://drive.google.com/file/d/1VEETithFT4k1VkOJcsoiFQm3c3U3-1n0/view?usp=sharing)
 - [Como fazer o projeto funcionar na sua máquina](#construction_worker-how-to-run)
 - [Issues (Problemas)](#bug-issues)
 - [PS](#monocle_face-ps)
@@ -53,10 +53,22 @@
    <img src="https://j.gifs.com/L7Q23g.gif" />
 </p>
 
-## Páginas
+## Telas
 
 <p align="center">
    <img src="https://j.gifs.com/zv1EMr.gif" />
+</p>
+
+## Tela - Biblioteca
+
+<p align="center">
+   <img src="https://j.gifs.com/5QmrOx.gif" />
+</p>
+
+## Tela - Home
+
+<p align="center">
+   <img src="https://j.gifs.com/xnYBRn.gif" />
 </p>
 
 ## Adicionando um livro para a próxima leitura
@@ -69,18 +81,6 @@
 
 <p align="center">
    <img src="https://j.gifs.com/oVM0wz.gif" />
-</p>
-
-## Biblioteca
-
-<p align="center">
-   <img src="https://j.gifs.com/5QmrOx.gif" />
-</p>
-
-## Página Home
-
-<p align="center">
-   <img src="https://j.gifs.com/xnYBRn.gif" />
 </p>
 
 # :computer: Tecnologias
