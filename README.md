@@ -38,12 +38,11 @@
 
 # :pushpin: Table of Contents
 
-- [Technologies](#computer-technologies)
-- [Link to download the APK](https://drive.google.com/file/d/1VEETithFT4k1VkOJcsoiFQm3c3U3-1n0/view?usp=sharing)
-- [How to run](#construction_worker-how-to-run)
-- [Issues](#bug-issues)
-- [PS](#monocle_face-ps)
-- [Contributing](#tada-contributing)
+- 💻 [Technologies](#computer-technologies)
+- 🔗 [Link to download the APK](https://drive.google.com/file/d/1VEETithFT4k1VkOJcsoiFQm3c3U3-1n0/view?usp=sharing)
+- 👷 [How to run](#construction_worker-how-to-run)
+- 🐛 [Issues](#bug-issues)
+- 🎉 [Contributing](#tada-contributing)
 
 # 📸 Screenshots
 
