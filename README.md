@@ -47,37 +47,37 @@
 
 # 📸 Screenshots
 
-## Dark mode/Light Mode
+## 🔦 Dark mode/Light Mode
 
 <p align="center">
    <img src="https://j.gifs.com/L7Q23g.gif" />
 </p>
 
-## Screens
+## 📱 Screens
 
 <p align="center">
    <img src="https://j.gifs.com/zv1EMr.gif" />
 </p>
 
-## Library Screen
+### 📱 Library Screen
 
 <p align="center">
    <img src="https://j.gifs.com/5QmrOx.gif" />
 </p>
 
-## Home Screen
+### 📱 Home Screen
 
 <p align="center">
    <img src="https://j.gifs.com/xnYBRn.gif" />
 </p>
 
-## Adding a book in a next reading
+## 🔖 Adding a book in a next reading
 
 <p align="center">
    <img src="https://j.gifs.com/MwR2yQ.gif" />
 </p>
 
-## See informations about the book
+## 📖 See informations about the book
 
 <p align="center">
    <img src="https://j.gifs.com/oVM0wz.gif" />

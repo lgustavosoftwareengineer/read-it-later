@@ -47,37 +47,37 @@
 
 # 📸 Screenshots
 
-## Dark mode/Light Mode
+## 🔦 Dark mode/Light Mode
 
 <p align="center">
    <img src="https://j.gifs.com/L7Q23g.gif" />
 </p>
 
-## Telas
+## 📱 Telas
 
 <p align="center">
    <img src="https://j.gifs.com/zv1EMr.gif" />
 </p>
-
-## Tela - Biblioteca
+ 
+### 📱 Tela - Biblioteca
 
 <p align="center">
    <img src="https://j.gifs.com/5QmrOx.gif" />
 </p>
 
-## Tela - Home
+### 📱 Tela - Home
 
 <p align="center">
    <img src="https://j.gifs.com/xnYBRn.gif" />
 </p>
 
-## Adicionando um livro para a próxima leitura
+## 🔖 Adicionando um livro para a próxima leitura
 
 <p align="center">
    <img src="https://j.gifs.com/MwR2yQ.gif" />
 </p>
 
-## Ver informações sobre livro
+## 📖 Ver informações sobre livro
 
 <p align="center">
    <img src="https://j.gifs.com/oVM0wz.gif" />
