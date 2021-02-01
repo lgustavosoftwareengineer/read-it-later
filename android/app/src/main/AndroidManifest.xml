@@ -2,7 +2,7 @@
     package="com.example.read_it_later">
   <uses-permission android:name="android.permission.INTERNET" />
   <application
-      android:label="O Que Ler Depois?"
+      android:label="O que eu estou lendo?"
       android:icon="@mipmap/ic_launcher"
       android:usesCleartextTraffic="true"
       >
