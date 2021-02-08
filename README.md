@@ -31,7 +31,7 @@
 </p>
 
 <div align="center">
-  <sub>The README Template project. Built with ❤︎ by
+  <sub>The Read It Later - "O que eu estou lendo?" project. Built with ❤︎ by
     <a href="https://github.com/tonicprism">Luiz Gustavo</a>
   </sub>
 </div>
