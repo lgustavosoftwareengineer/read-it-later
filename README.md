@@ -97,7 +97,7 @@ This project was made using the follow technologies:
 
 1. You must have the Flutter SDK installed in your machine ([Link to download](https://flutter.dev/docs/get-started/install))
 2. Have a emulator running ([Link to download](https://developer.android.com/studio?gclsrc=ds&gclid=CK-xn7C5ye4CFYn0Hwod4MEJHg&gclsrc=ds))
-3. Must a good text editor and install the Flutter extension in it ([Link to VSCode](https://code.visualstudio.com/download) e [Link to extension of Flutter/Dart](https://flutter.dev/docs/development/tools/vs-code))
+3. Must have a good text editor and install the Flutter extension in it ([Link to VSCode](https://code.visualstudio.com/download) e [Link to extension of Flutter/Dart](https://flutter.dev/docs/development/tools/vs-code))
 
 ## 👷 When everything is ok
 
